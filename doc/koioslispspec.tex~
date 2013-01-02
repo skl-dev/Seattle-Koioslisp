@@ -1,3 +1,4 @@
+%Partial application?
 %%%% USE XETEX
 \documentclass[10pt]{book}
 \usepackage{longtable}
@@ -39,11 +40,38 @@
 \chapter{Acknowledgements}
 If Koioslisp is a better language than others (a questionable proposition), it is, proverbially, because it stood on the shoulders of giants. First and foremost, I must acknowledge all the Lispers who came before me--the hackers of MIT, BBN, Xerox, the Lisp Machine world, and the Lisp community of today--for without their work, none of this would be possible. In particular, I must acknowledge the great implementors and theorists--giants of the LISP community: Professor John McCarthy, Steve Russell, Jonl White, Guy L. Steele, David Moon, Richard P. Gabriel, Richard M. Stallman, Gerald Jay Sussman, and more. I must also acknowledge the giants of recent times such as Paul Graham, Peter Seibel, Pascal Costanza, Edi Weitz, Zach Beane, Fran\c{c}ois-Ren\'{e} Rideau, James Kalenius, Nikodemus Siivola, Shriram Krishnamurthi, Stanislav Datskovskiy and Rich Hickey.
 \chapter{Inspiration and Design Features}
-Primary inspiration for {\sc Koioslisp} came from the {\sc Common Lisp} programming language (indeed, the document you are reading right now is structured based on the authoritative {\sc Common Lisp} reference, \textit{Common Lisp, the Language} by Guy L. Steele), with influences from {\sc Scheme}, {\sc Clojure}, and {\sc Prolog} A design influence comes from the language {\sc Python} and other modern scripting languages--in that ``batteries'' (i.e. utilities to connect to the rest of the world) should come included in the standard library, which is indeed part of the reason features which seem superfluous are included in {\sc Koioslisp}. In the specification, batteries will be marked clearly, as such utilities are far more likely to change over time. {\sc Koioslisp} attempts to unify the strengths of these Lisp dialects into one--{\sc Common Lisp} for its completeness, macros, object system, historical significance,large amounts of libraries (hopefully, the amount of compatibility given by {\sc Koioslisp} will encourage people to port useful libraries to it, such as ASDF, or SWANK(which is used for SLIME, the free Lisp IDE on Emacs)), and continuity; {\sc Scheme} for its elegance, continuations, and assorted innovations; {\sc Clojure} for its concurrency support, clean hash tables, and lazy evaluation.It also features {\sc Prolog}-style logic programming. In doing so, it tries to avoid the problems of the languages above mentioned. While {\sc Common Lisp} and {\sc Scheme} have aged relatively well, {\sc Common Lisp} has non-lispy hash tables and some marks of age, while {\sc Scheme}, though good for pedagogy, is crippled by its size and lack of powerful macros (though it does have ``hygenic'' macros), as well as some marks of age. Meanwhile, {\sc Clojure} is dependent on the JVM (or, in the case of its new ports, the CLR and JavaScript--which create some incompatibility between implementations, as {\sc Clojure} feeds off of those engines and absorbs their libraries and object systems) and departs from the ``mud ball'' metaphor of lisp, and {\sc Prolog} is entirely unusable for programming-in-the-large, being useful mainly as an extension to Lisp. Throughout this document, some compatibility notes will be recorded.
+Primary inspiration for {\sc Koioslisp} came from the {\sc Common Lisp} programming language (indeed, the document you are reading right now is structured based on the authoritative {\sc Common Lisp} reference, \textit{Common Lisp, the Language} by Guy L. Steele), with influences from {\sc Scheme}, {\sc Clojure}, and {\sc Prolog} A design influence comes from the language {\sc Python} and other modern scripting languages--in that ``batteries'' (i.e. utilities to connect to the rest of the world) should come included in the standard library, which is indeed part of the reason features which seem superfluous are included in {\sc Koioslisp}. In the specification, batteries will be marked clearly, as such utilities are far more likely to change over time. {\sc Koioslisp} attempts to unify the strengths of these Lisp dialects into one--{\sc Common Lisp} for its completeness, macros, object system, historical significance,large amounts of libraries (hopefully, the amount of compatibility given by {\sc Koioslisp} will encourage people to port useful libraries to it, such as ASDF, or SWANK(which is used for SLIME, the free Lisp IDE on Emacs)), and continuity; {\sc Scheme} for its elegance, continuations, and assorted innovations; {\sc Clojure} for its concurrency support, clean hash tables, and lazy evaluation.It also features {\sc Prolog}-style logic programming. In doing so, it tries to avoid the problems of the languages above mentioned. While {\sc Common Lisp} and {\sc Scheme} have aged relatively well, {\sc Common Lisp} has non-lispy hash tables and some marks of age, while {\sc Scheme}, though good for pedagogy, is crippled by its size and lack of powerful macros (though it does have ``hygenic'' macros), as well as some marks of age. Meanwhile, {\sc Clojure} is dependent on the JVM (or, in the case of its new ports, the CLR and JavaScript--which create some incompatibility between implementations, as {\sc Clojure} feeds off of those engines and absorbs their libraries and object systems), also has nearly-unusable macros, and \textit{gratuitously} incompatible with {\sc Common Lisp}, a dialect meant to end such incompatibilities. (as {\sc Scheme} came before {\sc Common Lisp} and was designed for pedagogy and to test the Actor model, it is excused from this criticism), and {\sc Prolog} is entirely unusable for programming-in-the-large, being useful mainly as an extension to Lisp. Throughout this document, some compatibility notes will be recorded.
 \chapter{Introduction}
 This is a specification for a {\sc Koioslisp}, a {\sc Lisp} dialect, which will evolve as time goes on and the fickle attitudes of the BDFL, Yash Tulsyan, change. If you are a programmer from C-like languages who expects a C-like syntax and a C++ (or Java/C\#) like object-oriented system imposed upon the user, then please either accept that this will not cater to that palate, or leave. If you are a programmer from Haskell or ML-like languages who is similarly put-off by s-expressions, want a functional style to be imposed upon the user, and caution against side-effects, we advise a similar course of action. As of this moment, this specification does not come with any standard implementation, due to the fact that the BDFL is currently a simple student who has not yet learned how to create a fully-featured compiler or an interpreter.
 \section{Do We Really Need Another Dialect?}
 This question appears whenever a new language appears, and in Lisp it is especially important, due to both its history and {\sc Common Lisp} macros. My answer to this: Maybe. If so, this is going to be it. If not, we (or at least, I) will probably use Common Lisp.
+\section{Design Goals of Koioslisp}
+\subsection{Extensibility}
+\subsection{Power}
+\subsection{Consistency}
+\subsection{Ease of use}
+\section{Naming Conventions}
+%%Change these from subsections to something else.
+None of these are enforced, but they are followed consistently, for the most part, internally--and describe naming conventions dominant in the LISP world.
+\subsection{multi-word-symbol}
+In programing, there have beem several conventions with creating identifiers with multiple words--such as C\textunderscore style\textunderscore identifiers, or CamelCase. As a member of the LISP family of languages, {\sc Koioslisp} uses the Lisp convention of putting hyphens between words.
+\subsection{predicatep}
+This convention designates that \textit{predicates}--functions that test whether or not a given proposition is true (such as \texttt{typep})--should have names that end with either a 'p' or a '-p'.
+%% 'P' and '-P' convention here
+\subsection{n-destructive-function}
+This convention designates that \textit{destructive functions}, which modify one or more of their arguments, should be prefixed with an 'n' or an 'n-'.
+%% 'N' and 'N-' convention here
+\subsection{*dynamic-variable*}
+\textit{Dynamic}, or \textit{global variables} should be surrounded by asterisks.
+\subsection{+constant-variable+}
+Note that this is generally not consistently used internally--for example, the constants T, NIL, and PI are not surrounded by plus signs, due to convention. Otherwise, constants are marked by being surrounded with plus signs.
+\subsection{variant*}
+Usually, when one is defining  a function which is only slightly different in behavior to a better-known pre-existing function, one appends an asterisk to it.
+\subsection{$<$class$>$}
+This convention, however, does \textit{not} apply to class wrappers around built-in {\sc Koioslisp} types.
+\subsection{with-dynamic-context}
+\subsection{deffoo}
+\subsection{make-foo}
 \section{Conventions Used in This Book}
 \chapter{Data Types}
 \section{Class Hierarchy of Koioslisp}
@@ -101,15 +129,15 @@ Though \textit{lazy evaluation} refers to an evaluation strategy, it is useful t
 \begin{defun}{eqv?}\end{defun}
 \begin{defgeneric}{=?}\end{defgeneric} %With alias equal? 
 \begin{defun}{not} \textit{x}\end{defun}
-\begin{defun}{type?} \textit{object type}\end{defun} %With alias class?
-\chapter{Control Structure}
 \begin{defmacro}{and} \&rest \textit{forms}\end{defmacro}
 \begin{defmacro}{or} \&rest \textit{forms}\end{defmacro}
 \begin{defun}{xor} \&rest \textit{forms}\end{defun}
+\begin{defun}{type?} \textit{object type}\end{defun} %With alias class?
+\chapter{Control Structure}
 \begin{defmacro}{zap!}\end{defmacro} %The arc definition
 \begin{defmacro}{alias}\end{defmacro} %Does it have to be in a macro? 
 \begin{defmacro}{partial} \textit{function args-or-placeholders}\\
-A \textit{placeholder} is represented the atom \texttt{\textunderscore} and the placeholder arguments form the arguments of the returned function\end{defmacro}
+A \textit{placeholder} is represented the atom \texttt{_} and the placeholder arguments form the arguments of the returned function\end{defun}
 \begin{defun}{memoize}\end{defun}
 \begin{defun}{compose} \textit{f} \&rest \textit{funs} \end{defun}
 \begin{defun}{conjoin} \&rest \textit{predicates}\end{defun}
@@ -361,7 +389,7 @@ This interns the symbol \texttt{BAR} as an external symbol in the \texttt{keywor
 \begin{defun}{factorial} \textit{n}\end{defun}
 \begin{defun}{subfactorial} \textit{n}\end{defun}
 \begin{defun}{gaussian-random} \&optional \textit{min max}\end{defun}
-\begin{defun}{invert-matrix}\end{defun}
+\begin{defun}{invert-matrix}\end{defin}
 \begin{defun}{transpose}\end{defun}
 \begin{defun}{conjugate-transpose}\end{defun}
 \begin{defun}{eigenvalues}\end{defun}
@@ -385,17 +413,15 @@ This interns the symbol \texttt{BAR} as an external symbol in the \texttt{keywor
 \begin{defgeneric}{set-difference}\end{defgeneric}
 \begin{defgeneric}{set-difference!}\end{defgeneric}
 \begin{defun}{complement} \textit{function}\end{defun}
-\begin{defgeneric}{flatten} \textit{sequence}\end{defgeneric}
 \section{Advanced Sequence Functions}
 All of the pure advanced sequence generic functions (save \texttt{map}) should have an implementation where the \textit{sequence} arguments are of type \texttt{sequence}. They may optionally provide implementations for sub-classes of \texttt{sequence} in the interests of efficiency.\\
 %% The from-end stuff might be complicated with lazy sequences, though they may not have to use that keyword...
+\begin{defgeneric}{concatenate} \textit{result-type} \&rest \textit{sequences}\end{defgeneric}
 %%% OK: the primitive will be map: everything else will be implemented in terms of map, at least for a (poor) "sequence default"
 \begin{defgeneric}{map} \textit{result-type function sequence} \&rest \textit{more-sequences} \end{defgeneric} %:before, :after, and :around methods may be necessary
 \begin{defgeneric}{map!} \textit{result-sequence function} \&rest \textit{sequences}
 %Unlike other \textit{zapper} functions, \texttt{nmap} is not..
 \end{defgeneric}
-\begin{defgeneric}{append}\textit{result-type} \&rest \textit{sequences}\end{defgeneric}
-\begin{defun}{mappend}\textit{result-type function sequence} \&rest \textit{more-seqences}\end{defun} %Basically, (apply #'append (map ...))
 \begin{defun}{some} \textit{predicate sequence} \&rest \textit{more-sequences}\end{defun}
 \begin{defun}{every} \textit{predicate sequence} \&rest \textit{more-seqences}\end{defun}
 \begin{defun}{notany} \textit{predicate sequence} \&rest \textit{more-sequences}\end{defun}
@@ -524,7 +550,6 @@ All of the pure advanced sequence generic functions (save \texttt{map}) should h
 \begin{defmethod}{member-if}\end{defmethod}
 \begin{defun}{tail?}\end{defun}%Also, create generic "contains"
 %%Rename in light of SERIES "tail" function. Or rename that...
-\begin{defun}{citcular-list?}\end{defun}
 \section{Association Lists}
 \begin{defun}{acons}\end{defun}
 \begin{defun}{pairlis}\end{defun}

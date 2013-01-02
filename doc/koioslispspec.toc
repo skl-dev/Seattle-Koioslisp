@@ -1,0 +1,191 @@
+\contentsline {chapter}{\numberline {1}Preface}{9}
+\contentsline {chapter}{\numberline {2}Acknowledgements}{11}
+\contentsline {chapter}{\numberline {3}Inspiration and Design Features}{13}
+\contentsline {chapter}{\numberline {4}Introduction}{15}
+\contentsline {section}{\numberline {4.1}Do We Really Need Another Dialect?}{15}
+\contentsline {section}{\numberline {4.2}Conventions Used in This Book}{15}
+\contentsline {chapter}{\numberline {5}Data Types}{17}
+\contentsline {section}{\numberline {5.1}Class Hierarchy of Koioslisp}{17}
+\contentsline {section}{\numberline {5.2}Numbers}{17}
+\contentsline {subsection}{\numberline {5.2.1}Integers}{17}
+\contentsline {subsection}{\numberline {5.2.2}Ratios}{17}
+\contentsline {subsection}{\numberline {5.2.3}Floating Point Numbers}{18}
+\contentsline {subsection}{\numberline {5.2.4}Complex Numbers}{18}
+\contentsline {section}{\numberline {5.3}Characters}{18}
+\contentsline {subsection}{\numberline {5.3.1}Standard Characters}{18}
+\contentsline {subsection}{\numberline {5.3.2}Line Divisions}{18}
+\contentsline {subsection}{\numberline {5.3.3}Non-standard Characters}{18}
+\contentsline {subsection}{\numberline {5.3.4}Character Attributes}{19}
+\contentsline {section}{\numberline {5.4}Symbols}{19}
+\contentsline {section}{\numberline {5.5}Arrays}{19}
+\contentsline {section}{\numberline {5.6}Vectors}{19}
+\contentsline {section}{\numberline {5.7}Strings}{19}
+\contentsline {section}{\numberline {5.8}Bit-Vectors}{19}
+\contentsline {section}{\numberline {5.9}Hash Tables}{19}
+\contentsline {section}{\numberline {5.10}Readtables}{19}
+\contentsline {section}{\numberline {5.11}Packages}{19}
+\contentsline {section}{\numberline {5.12}Pathnames}{19}
+\contentsline {section}{\numberline {5.13}Sockets}{19}
+\contentsline {section}{\numberline {5.14}Streams}{19}
+\contentsline {section}{\numberline {5.15}Random-States}{19}
+\contentsline {section}{\numberline {5.16}Structures}{19}
+\contentsline {section}{\numberline {5.17}Functions}{19}
+\contentsline {section}{\numberline {5.18}Objects}{19}
+\contentsline {section}{\numberline {5.19}Continuations}{19}
+\contentsline {section}{\numberline {5.20}Laziness and Lazy Types}{19}
+\contentsline {section}{\numberline {5.21}Unreadable Data Objects}{20}
+\contentsline {section}{\numberline {5.22}Overlap, Inclusion, and Disjointness of Types}{20}
+\contentsline {chapter}{\numberline {6}Scope and Extent}{21}
+\contentsline {chapter}{\numberline {7}Type Specifiers}{23}
+\contentsline {chapter}{\numberline {8}Program Structure}{25}
+\contentsline {chapter}{\numberline {9}Predicates}{27}
+\contentsline {chapter}{\numberline {10}Control Structure}{29}
+\contentsline {section}{\numberline {10.1}Constants and Variables}{29}
+\contentsline {subsection}{\numberline {10.1.1}Reference}{29}
+\contentsline {subsection}{\numberline {10.1.2}Assignment and Bindings}{29}
+\contentsline {subsubsection}{Low-Level Assignment}{29}
+\contentsline {subsubsection}{Generalized References}{30}
+\contentsline {subsubsection}{Establishing New Bindings}{30}
+\contentsline {section}{\numberline {10.2}Sequencing}{30}
+\contentsline {section}{\numberline {10.3}Iteration}{30}
+\contentsline {subsection}{\numberline {10.3.1}Low-Level Iteration}{31}
+\contentsline {subsection}{\numberline {10.3.2}LOOP}{31}
+\contentsline {section}{\numberline {10.4}List Comprehension}{33}
+\contentsline {section}{\numberline {10.5}Catch, Throw, and Unwind-Protect}{34}
+\contentsline {chapter}{\numberline {11}Macros}{35}
+\contentsline {section}{\numberline {11.1}Definition of Macros}{35}
+\contentsline {section}{\numberline {11.2}Expansion of Macros}{35}
+\contentsline {section}{\numberline {11.3}Compiler Macros}{35}
+\contentsline {section}{\numberline {11.4}Environments}{35}
+\contentsline {chapter}{\numberline {12}Declarations}{37}
+\contentsline {section}{\numberline {12.1}Declaration Specifiers}{37}
+\contentsline {section}{\numberline {12.2}Forms and Type Declaration}{37}
+\contentsline {chapter}{\numberline {13}Symbols}{39}
+\contentsline {chapter}{\numberline {14}Packages and Systems}{41}
+\contentsline {section}{\numberline {14.1}Colon syntax}{42}
+\contentsline {section}{\numberline {14.2}Built-in Modules}{43}
+\contentsline {chapter}{\numberline {15}Mathematics}{45}
+\contentsline {section}{\numberline {15.1}The Math library}{45}
+\contentsline {chapter}{\numberline {16}Characters}{47}
+\contentsline {chapter}{\numberline {17}Sequences}{49}
+\contentsline {section}{\numberline {17.1}Basic Sequence Functions}{49}
+\contentsline {section}{\numberline {17.2}Advanced Sequence Functions}{50}
+\contentsline {section}{\numberline {17.3}Searching Sequences}{51}
+\contentsline {section}{\numberline {17.4}Sorting and Merging}{51}
+\contentsline {chapter}{\numberline {18}Lists}{53}
+\contentsline {section}{\numberline {18.1}Conses}{53}
+\contentsline {section}{\numberline {18.2}Lists}{54}
+\contentsline {section}{\numberline {18.3}Association Lists}{56}
+\contentsline {section}{\numberline {18.4}Mapping}{56}
+\contentsline {chapter}{\numberline {19}Sets}{57}
+\contentsline {chapter}{\numberline {20}Hash Tables}{59}
+\contentsline {chapter}{\numberline {21}Arrays}{63}
+\contentsline {section}{\numberline {21.1}Vectors}{63}
+\contentsline {chapter}{\numberline {22}Tuples}{65}
+\contentsline {chapter}{\numberline {23}Strings}{67}
+\contentsline {section}{\numberline {23.1}String Pattern Matching}{67}
+\contentsline {subsection}{\numberline {23.1.1}Regular Expressions}{68}
+\contentsline {chapter}{\numberline {24}The Evaluator}{69}
+\contentsline {chapter}{\numberline {25}Lazy Evaluation}{71}
+\contentsline {section}{\numberline {25.1}Series}{71}
+\contentsline {chapter}{\numberline {26}Continuations}{73}
+\contentsline {chapter}{\numberline {27}Logic Programming}{75}
+\contentsline {section}{\numberline {27.1}Constraints}{75}
+\contentsline {subsection}{\numberline {27.1.1}Nondeterminism}{75}
+\contentsline {subsection}{\numberline {27.1.2}The Creation and Manipulation of Constraint Variables}{76}
+\contentsline {subsubsection}{Sequences}{77}
+\contentsline {subsubsection}{Booleans}{77}
+\contentsline {subsubsection}{Numbers}{77}
+\contentsline {subsection}{\numberline {27.1.3}Forcing Solutions}{78}
+\contentsline {subsection}{\numberline {27.1.4}Side Effects in Constraint Programming}{78}
+\contentsline {subsection}{\numberline {27.1.5}Relations}{79}
+\contentsline {chapter}{\numberline {28}Sockets}{81}
+\contentsline {chapter}{\numberline {29}Streams}{83}
+\contentsline {chapter}{\numberline {30}Objects}{85}
+\contentsline {section}{\numberline {30.1}Classes}{86}
+\contentsline {subsection}{\numberline {30.1.1}Defining Classes}{86}
+\contentsline {subsection}{\numberline {30.1.2}Instance Creation}{86}
+\contentsline {subsection}{\numberline {30.1.3}Slots}{86}
+\contentsline {subsection}{\numberline {30.1.4}Accessing Slots}{86}
+\contentsline {subsection}{\numberline {30.1.5}Inheritance}{86}
+\contentsline {subsubsection}{Inheritance of Methods}{86}
+\contentsline {subsubsection}{Inheritance of Slots}{86}
+\contentsline {subsubsection}{Examples}{86}
+\contentsline {subsection}{\numberline {30.1.6}Built-in Classes}{86}
+\contentsline {subsection}{\numberline {30.1.7}Determining the Class Precedence List}{86}
+\contentsline {subsubsection}{Sorting the Class Precedence Lists}{86}
+\contentsline {subsubsection}{Examples}{86}
+\contentsline {section}{\numberline {30.2}Generic Functions and Methods}{86}
+\contentsline {subsection}{\numberline {30.2.1}Introduction}{86}
+\contentsline {subsection}{\numberline {30.2.2}Agreement on Parameter Specializers and Qualifiers}{86}
+\contentsline {subsection}{\numberline {30.2.3}Keyword Arguments}{86}
+\contentsline {subsection}{\numberline {30.2.4}Method Selection}{86}
+\contentsline {subsection}{\numberline {30.2.5}Determinating the Effective Method}{86}
+\contentsline {subsection}{\numberline {30.2.6}Standard Method Combination}{86}
+\contentsline {subsection}{\numberline {30.2.7}Other Method Combinations}{86}
+\contentsline {subsection}{\numberline {30.2.8}Defining Method Combinations}{86}
+\contentsline {subsection}{\numberline {30.2.9}SET methods}{86}
+\contentsline {section}{\numberline {30.3}Structures}{86}
+\contentsline {subsection}{\numberline {30.3.1}Defstruct Options}{86}
+\contentsline {subsection}{\numberline {30.3.2}BOA Constructors}{86}
+\contentsline {section}{\numberline {30.4}The Meta-Object Protocol}{86}
+\contentsline {chapter}{\numberline {31}Input/Output}{87}
+\contentsline {section}{\numberline {31.1}Readtables}{87}
+\contentsline {chapter}{\numberline {32}File System Interface}{89}
+\contentsline {section}{\numberline {32.1}File Names}{89}
+\contentsline {subsection}{\numberline {32.1.1}Pathnames}{89}
+\contentsline {subsection}{\numberline {32.1.2}Case Conventions}{90}
+\contentsline {subsection}{\numberline {32.1.3}Structured Directories}{90}
+\contentsline {subsection}{\numberline {32.1.4}Extended Wildcards and Globbing}{90}
+\contentsline {subsection}{\numberline {32.1.5}Logical Pathnames}{90}
+\contentsline {subsubsection}{Syntax of Logical Pathnames}{90}
+\contentsline {subsubsection}{Parsing of Logical Pathname Namestrings}{90}
+\contentsline {subsubsection}{Using Logical Pathnames}{90}
+\contentsline {subsubsection}{Logical Pathname Examples}{90}
+\contentsline {subsection}{\numberline {32.1.6}Pathname Functions}{90}
+\contentsline {section}{\numberline {32.2}File and Directory Operations}{90}
+\contentsline {subsection}{\numberline {32.2.1}File I/O}{90}
+\contentsline {subsubsection}{Loading files}{90}
+\contentsline {subsection}{\numberline {32.2.2}Renaming, Deleting, and Other FIle Operations}{90}
+\contentsline {subsection}{\numberline {32.2.3}Accessing Directories}{90}
+\contentsline {chapter}{\numberline {33}Errors}{91}
+\contentsline {chapter}{\numberline {34}Advice}{93}
+\contentsline {chapter}{\numberline {35}Miscellaneous Features}{95}
+\contentsline {section}{\numberline {35.1}The Compiler}{95}
+\contentsline {subsection}{\numberline {35.1.1}Compiler Diagnostics}{95}
+\contentsline {subsection}{\numberline {35.1.2}Compiled Functions}{95}
+\contentsline {subsection}{\numberline {35.1.3}Compilation Environment}{95}
+\contentsline {subsection}{\numberline {35.1.4}Similarity of Constants}{95}
+\contentsline {section}{\numberline {35.2}Documentation}{95}
+\contentsline {section}{\numberline {35.3}Debugging Tools}{96}
+\contentsline {section}{\numberline {35.4}Environment}{96}
+\contentsline {chapter}{\numberline {36}Pretty-Printing}{99}
+\contentsline {chapter}{\numberline {37}Concurrency}{101}
+\contentsline {section}{\numberline {37.1}Refs}{101}
+\contentsline {section}{\numberline {37.2}The Dining Philosophers Problem}{102}
+\contentsline {chapter}{\numberline {38}Backquote}{103}
+\contentsline {chapter}{\numberline {39}Implementation Notes}{105}
+\contentsline {chapter}{\numberline {40}Batteries--Utility Libraries}{107}
+\contentsline {section}{\numberline {40.1}Logging}{107}
+\contentsline {section}{\numberline {40.2}Data Compression}{107}
+\contentsline {section}{\numberline {40.3}Foreign Function Interfaces}{107}
+\contentsline {section}{\numberline {40.4}OS Services and Adaptations}{107}
+\contentsline {subsection}{\numberline {40.4.1}UNIX-specific}{107}
+\contentsline {section}{\numberline {40.5}Cryptography}{107}
+\contentsline {section}{\numberline {40.6}Internet Data Handling}{107}
+\contentsline {section}{\numberline {40.7}Markup Language Processing Tools}{107}
+\contentsline {section}{\numberline {40.8}Internet Protocols}{107}
+\contentsline {section}{\numberline {40.9}Multimedia Services}{107}
+\contentsline {section}{\numberline {40.10}GUIs}{107}
+\contentsline {subsection}{\numberline {40.10.1}KLIM}{107}
+\contentsline {subsection}{\numberline {40.10.2}Tk Interface}{108}
+\contentsline {subsection}{\numberline {40.10.3}GTK+ Interface}{108}
+\contentsline {subsection}{\numberline {40.10.4}Qt Interface}{108}
+\contentsline {subsection}{\numberline {40.10.5}wxWidgets Interface}{108}
+\contentsline {subsection}{\numberline {40.10.6}GNUstep Interface}{108}
+\contentsline {chapter}{\numberline {41}Community Things}{109}
+\contentsline {section}{\numberline {41.1}CKLAN}{109}
+\contentsline {section}{\numberline {41.2}Lake}{109}
+\contentsline {section}{\numberline {41.3}LispDoc}{109}
+\contentsline {section}{\numberline {41.4}ASDF-like tools}{109}
+\contentsline {chapter}{\numberline {42}References}{111}
