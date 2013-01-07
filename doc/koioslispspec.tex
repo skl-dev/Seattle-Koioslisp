@@ -94,7 +94,12 @@ Though \textit{lazy evaluation} refers to an evaluation strategy, it is useful t
 \section{Overlap, Inclusion, and Disjointness of Types}
 \chapter{Scope and Extent}
 \textit{Scope} and \textit{extent} are important when discussing features of a language. \textit{Scope} is the spatial region on which a variable is defined--\textit{extent} is the temporal region. Koioslisp, like Common Lisp, utilizes two systems of scope and two systems of extent--\textit{lexical scope}, \textit{indefinite scope}, \textit{dynamic extent}, and \textit{indefinite extent}.
-\chapter{Type Specifiers}
+\chapter{Types}
+\section{Type Specifiers}
+\subsection{Algebraic Datatypes}
+%Try to find out type-of's interaction with algebraic types.
+\section{Typeclasses and Monads}
+Because \textsc{Koioslisp} is not a pure language, certain (normally monadic) constructs do not need to be wrapped in monads.
 \chapter{Program Structure}
 \chapter{Predicates}
 \begin{defun}{eq?}\end{defun}
@@ -709,7 +714,7 @@ Another, often quicker, method for recognizing patterns in strings is through th
 
 
 \chapter{The Evaluator}
-\chapter{Lazy Evaluation}
+\\chapter{Lazy Evaluation}
 \textit{Lazy evaluation} is a method for efficiently manipulating large (even theoretically infinite) data structures. Though usually evaluation is eager, Koioslisp provides support for lazy evaluation with explicit annotation. The Koioslisp lazy evaluation facility is partially based on the CLAZY library for Common Lisp, and the Clojure lazy evaluation facility. See also the section on List Comprehension. 
 
 \begin{defmacro}{deflazy}\end{defmacro}
@@ -875,6 +880,10 @@ The Koioslisp Object System is based on CLOS (Common Lisp Object System) and TEL
 \subsection{Defstruct Options}
 \subsection{BOA Constructors}
 \section{The Meta-Object Protocol}
+\begin{defgeneric}{add-dependent}\end{defgeneric}
+\begin{defgeneric}{add-direct-method}\end{defgeneric}
+\begin{defgeneric}{add-direct-subclass}\end{defgeneric}
+\begin{defgeneric}{add-method}\end{defgeneric}
 
 \chapter{Input/Output}
 \begin{lisp}
@@ -882,19 +891,27 @@ The Koioslisp Object System is based on CLOS (Common Lisp Object System) and TEL
 (format t ``Oceania has always been at war with \textasciitilde A'' *country*)\\ ;\textrm{→} ``Oceania has always been at war with Eurasia''
 \end{lisp}
 \section{Readtables}
-\textsc{Koioslisp} adopts the mechanism of \textit{named readtables}. There are two preregistered readtables: \texttt{:koioslisp} and \texttt{:current}: they refer to standard \textsc{Koioslisp} syntax and the current readtable respectively.
+\textsc{Koioslisp} adopts the mechanism of \textit{named readtables}. There are two preregistered readtables: \texttt{:koioslisp} and \texttt{:current}: they refer to standard \textsc{Koioslisp} syntax and the current readtable respectively. This readtable API was inspired by the paper ``EDITOR-HINTS.NAMED-READTABLES - 0.9'' by Tobias C. Rittweiler.
 \begin{defmacro}{defreadtable} \textit{name} \&body \textit{options}\\
 \texttt{defreadtable}, as indicated by its name, defines a new readtable with its name the symbol \textit{name}, unless \textit{name} is already used for another readtable, in which case it is redefined. \texttt{defreadtable} takes several options:\\
 \texttt{(:merge} \textit{readtables+})\\
 \texttt{(:merge-overwriting} \textit{readtables+})\\
-\texttt{(:dispatch-macro-char} \textit{macro-char function})\\
-\texttt{(:macro-char} \textit{macro-char function}
+\texttt{(:dispatch-macro-symbol} \textit{d-macro-symbol function})\\
+\texttt{(:macro-char} \textit{macro-char function} \&optional \textit{non-terminating-p})\\\hline
+\texttt{(:syntax-from} \textit{from-readtable from-char to-char})\\\hline
 \end{defmacro}
 \begin{defun}{copy-readtable}\end{defun}
 \begin{defun}{ensure-readtable}\end{defun}
 \begin{defun}{find-readtable} \textit{name}\\
 Looks for a readtable of name \textit{name} (which is of type \texttt{(or readtable symbol)}), and returns it if it is found, or \texttt{nil} otherwise.
 \end{defun}
+\begin{defmacro}{in-readtable} \textit{name}\\
+The code following a call to \texttt{in-readtable} are to be treated as if they follow the syntax defined by readtable \textit{name}.
+\end{defmacro}
+\begin{defun}{merge-readtables-into} \textit{result} \&rest \textit{readtables} \\
+The contents of \textit{readtables} are copied into \textit{result}. If a conflict is discovered, an error of type \texttt{reader-macro-conflict} is signaled.
+\end{defun}
+
 \chapter{File System Interface}
 
 Often, programs are packaged in \textit{files}. Because of their use, {\sc Koioslisp} provides a standard method for interacting with a filesystem. The system is designed with its basis on the Common Lisp filesystem interface because of its generality and ability to handle most, if not all, forms of filesystems. These are useful features because of the historical and current variation in file systems and their conventions in representing files.
@@ -1100,6 +1117,351 @@ A \textit{ref} is like a Concurrent Haskell \textit{TVar}; it is used for mutabl
 \chapter{Backquote} 
 \chapter{Implementation Notes}
 Some notes as to how to implement this are located here, however, the notes speak from a high-level, design perspective.{\sc Koioslisp}'s syntax and semantics have been designed in such a way that if one has a modern, working implementation of {\sc Common Lisp} (such as Steel Bank Common Lisp (SBCL)), one can adapt it with little effort to implement much of the {\sc Koioslisp} standard library. An interesting perspective on implementation, proposed by Richard P. Gabriel in his paper ``Lisp: Good News, Bad News, How to Win Big'', and followed by the experimental Lisp dialect Shen, is to create a kernel language small enough to implement easily, yet powerful enough to express the language--and implement the rest of the language as a standard library for the kernel (Shen's kernel language is called Kernel Lisp, or 'Kl', which, like Koioslisp, has used '.kl' as an extension. Koioslisp is not compatible with Kernel Lisp, and has no relation to it whatsoever). Another solution would be to implement it as an embedded language within Common Lisp. Whatever the solution turns out to be, we hope that these suggestions will prompt quicker implementation of {\sc Koioslisp}.
+\chapter{KLIM}
+The standard mechanism for windowing is the \textsc{Koioslisp Interface Manager}, or \textsc{klim}. It is roughly based around the Common Lisp Interface Manager, which itself is descended from the GUI provided in the Genera operating system in Symbolics Lisp Machines. Like the rest of Koioslisp, it should be portable, which in this context means it should be supportable across window environments.\\
+%%Organize this
+%%Promote it to a chapter? Put it in its own document?
+\begin{defun}{defapplication-frame}\end{defun}
+\begin{defun}{defapplication-pane}\end{defun}
+\begin{defun}{draw-point}\end{defun}
+\begin{defun}{draw-point*}\end{defun}
+\begin{defun}{draw-points}\end{defun}
+\begin{defun}{draw-points*}\end{defun}
+\begin{defun}{draw-arrow}\end{defun}
+\begin{defun}{draw-arrow*}\end{defun}
+\begin{defun}{draw-arrows*}\end{defun}
+\begin{defun}{region-intersection}\end{defun}
+\begin{defun}{region-difference}\end{defun}
+\begin{defun}{draw-text}\end{defun}
+\begin{defun}{draw-text*}\end{defun}
+\begin{defun}{draw-line}\end{defun}
+\begin{defun}{draw-line*}\end{defun}
+\begin{defun}{draw-lines}\end{defun}
+\begin{defun}{draw-lines*}\end{defun}
+\begin{defun}{draw-polygon}\end{defun}
+\begin{defun}{draw-polygon*}\end{defun}
+\begin{defun}{draw-rectangle}\end{defun}
+\begin{defun}{draw-rectangle*}\end{defun}
+\begin{defun}{draw-rectangles}\end{defun}
+\begin{defun}{draw-rectangles*}\end{defun}
+\begin{defun}{draw-ellipse}\end{defun}
+\begin{defun}{draw-ellipse*}\end{defun}
+\begin{defun}{draw-circle}\end{defun}
+\begin{defun}{draw-circle*}\end{defun}
+\begin{defun}{draw-oval}\end{defun}
+\begin{defun}{draw-oval*}\end{defun}
+\begin{defun}{draw-bezier-curve}\end{defun}
+\begin{defun}{draw-bezier-curve*}\end{defun}
+\begin{defgeneric}{medium-draw-point*}\end{defgeneric}
+\begin{defgeneric}{medium-draw-points*}\end{defgeneric}
+\begin{defgeneric}{medium-draw-line*}\end{defgeneric}
+\begin{defgeneric}{medium-draw-lines*}\end{defgeneric}
+\begin{defgeneric}{medium-draw-rectangle*}\end{defgeneric}
+\begin{defgeneric}{medium-draw-rectangles*}\end{defgeneric}
+\begin{defgeneric}{medium-copy-area}\end{defgeneric}
+\begin{defgeneric}{medium-draw-polygon*}\end{defgeneric}
+\begin{defgeneric}{medium-draw-ellipse*}\end{defgeneric}
+\begin{defgeneric}{medium-draw-text*}\end{defgeneric}
+\begin{defun}{copy-to-pixmap}\end{defun}
+\begin{defun}{copy-from-pixmap}\end{defun}
+\begin{defun}{draw-pixmap*}\end{defun}
+\begin{defun}{draw-pixmap}\end{defun}
+\begin{defgeneric}{copy-area}\end{defgeneric}
+\begin{defun}{allocate-pixmap}\end{defun}
+\begin{defun}{deallocate-pixmap}\end{defun}
+\begin{defgeneric}{pixmap-width}\end{defgeneric}
+\begin{defgeneric}{pixmap-height}\end{defgeneric}
+\begin{defgeneric}{pixmap-depth}\end{defgeneric}
+\begin{defmacro}{with-output-to-pixmap}\end{defmacro}
+\begin{defclass}{$<$region$>$}{$<$standard-object$>$}\end{defclass}
+\begin{defclass}{$<$point>}{$<$standard-object$>$}\end{defclass}
+\begin{defclass}{$<$path>}{$<$region$>$}\end{defclass}
+\begin{defclass}{$<$area$>$}{$<$region$>$}\end{defclass}
+\begin{defconstant}{+everywhere+}\end{defconstant}
+\begin{defconstant}{+nowhere+}\end{defconstant}
+\begin{defgeneric}{region-equal}\end{defgeneric}
+\begin{defgeneric}{region-contains-region-p}\end{defgeneric}
+\begin{defgeneric}{region-contains-position-p}\end{defgeneric}
+\begin{defgeneric}{region-intersects-region-p}\end{defgeneric}
+\begin{defmethod}{union}\end{defmethod} %For regions
+\begin{defmethod}{intersection}\end{defmethod} %For regions
+\begin{defmethod}{difference}\end{defmethod}%For regions
+\begin{defclass}{$<$region-set$>$}{$<$region$>$}\end{defclass}
+\begin{defgeneric}{region-set-function}\end{defgeneric}
+\begin{defgeneric}{region-set-regions}\end{defgeneric}
+\begin{defgeneric}{map-regions}\end{defgeneric} %For regions
+\begin{defclass}{$<$point$>$}{$<$standard-object$>$}\end{defclass} %%Hmm, maybe this calls for a 'mixin' system, as point cannot be instantiated
+\begin{defclass}{$<$standard-point$>$}{$<$standard-object$>$}\end{defclass}
+\begin{defun}{make-point}\end{defun}
+\begin{defgeneric}{point-position}\end{defgeneric} %Points
+\begin{defgeneric}{point-x}\end{defgeneric} %Points
+\begin{defgeneric}{point-y}\end{defgeneric} %Points
+\begin{defclass}{$<$polyline$>$}{$<$path$>$}\end{defclass}
+\begin{defclass}{$<$polygon$>$}{$<$area$>$}\end{defclass}
+\begin{defclass}{$<$standard-polyline$>$}{$<$polyline$>$}\end{defclass}
+\begin{defclass}{$<$standard-polygon$>$}{$<$polygon$>$}\end{defclass}
+\begin{defun}{make-polygon}\end{defun}
+\begin{defun}{make-polygon*}\end{defun}
+\begin{defun}{make-polyline}\end{defun}
+\begin{defun}{make-polyline*}\end{defun}
+\begin{defgeneric}{polyline-closed-p}\end{defgeneric}
+\begin{defgeneric}{map-polygon-coordinates}\end{defgeneric}
+\begin{defgeneric}{map-polygon-segments}\end{defgeneric}
+\begin{defclass}{$<$line$>$}{$<$polyline$>$}\end{defclass}
+\begin{defclass}{$<$standard-line$>$}{$<$line$>$}\end{defclass}
+\begin{defun}{make-line}\end{defun}
+\begin{defun}{make-line*}\end{defun}
+\begin{defgeneric}{line-start-point}\end{defgeneric}
+\begin{defgeneric}{line-start-point*}\end{defgeneric}
+\begin{defgeneric}{line-end-point}\end{defgeneric}
+\begin{defgeneric}{line-end-point*}\end{defgeneric}
+\begin{defclass}{$<$rectangle$>$}{$<$polygon$>$}\end{defclass}
+\begin{defclass}{$<$standard-rectangle$>$}{$<$rectangle$>$}\end{defclass}
+\begin{defgeneric}{rectangle-min-point}\end{defgeneric}
+\begin{defgeneric}{rectangle-max-point}\end{defgeneric}
+\begin{defun}{rectangle-min-x}\end{defun}
+\begin{defun}{rectangle-min-y}\end{defun}
+\begin{defun}{rectangle-width}\end{defun}
+\begin{defun}{rectangle-height}\end{defun}
+\begin{defun}{rectangle-size}\end{defun}
+\begin{defclass}{$<$bounding-rectangle$>$}{$<$standard-object$>$}\end{defclass}
+\begin{defclass}{$<$standard-bounding-rectangle$>$}{$<$bounding-rectangle$>$, $<$rectangle$>$}\end{defclass}
+\begin{defun}{make-bounding-rectangle}\end{defun}
+\begin{defgeneric}{bounding-rectangle*}\end{defgeneric}
+\begin{defgeneric}{bounding-rectangle}\end{defgeneric}
+\begin{defun}{bounding-rectangle-min-x}\end{defun}
+\begin{defun}{bounding-rectangle-min-y}\end{defun}
+\begin{defun}{bounding-rectangle-top}\end{defun}
+\begin{defun}{bounding-rectangle-max-x}\end{defun}
+\begin{defun}{bounding-rectangle-max-y}\end{defun}
+\begin{defun}{bounding-rectangle-bottom}\end{defun}
+\begin{defun}{bounding-rectangle-size}\end{defun}
+\begin{defun}{bounding-rectangle-width}\end{defun}
+\begin{defun}{bounding-rectangle-height}\end{defun}
+\begin{defclass}{$<$ellipse$>$}{$<$area$>$}\end{defclass}
+\begin{defclass}{$<$elliptical-arc$>$}{$<$path$>$}\end{defclass}
+\begin{defclass}{$<$standard-ellipse$>$}{$<$ellipse$>$}\end{defclass}
+\begin{defclass}{$<$standard-elliptical-arc$>$}{$<$elliptical-arc$>$}\end{defclass}
+\begin{defun}{make-ellipse}\end{defun}
+\begin{defun}{make-ellipse*}\end{defun}
+\begin{defun}{make-elliptical-arc}\end{defun}
+\begin{defun}{make-elliptical-arc*}\end{defun}
+\begin{defun}{ellipse-center-point}\end{defun}
+\begin{defun}{ellipse-center-point*}\end{defun}
+\begin{defun}{ellipse-radii}\end{defun}
+\begin{defun}{ellipse-start-angle}\end{defun}
+\begin{defun}{ellipse-end-angle}\end{defun}
+\begin{defgeneric}{medium-foreground} \textit{medium}\end{defgeneric}
+\begin{defgeneric}{medium-background} \textit{medium}\end{defgeneric}
+\begin{defgeneric}{medium-ink} \textit{medium}\end{defgeneric}
+\begin{defgeneric}{medium-transformation}\textit{medium}\end{defgeneric}
+\begin{defgeneric}{medium-clipping-region}\textit{medium}\end{defgeneric}
+\begin{defgeneric}{medium-line-style}\textit{medium}\end{defgeneric}
+\begin{defgeneric}{medium-text-style}\textit{medium}\end{defgeneric}
+\begin{defgeneric}{medium-default-text-style}\textit{medium}\end{defgeneric}
+\begin{defmacro}{with-drawing-options}(\textit{medium} \&key \textit{ink clipping-region transformation line-style line-unit line-thickness line-dashes line-joint-shape line-cap-shape text-style text-family text-face text-size}) \&body \textit{body}\end{defmacro}
+\begin{defgeneric}{invoke-with-drawing-options}\textit{stream function} \&key \textit{ink clipping-region transformation line-style line-unit line-thickness line-dashes line-joint-shape line-cap-shape text-style text-family text-face text-size}\end{defgeneric}
+\begin{defother}{Drawing option}{:clipping-region}\end{defother}
+\begin{defother}{Drawing option}{:ink}\end{defother}
+\begin{defother}{Drawing option}{:transformation}\end{defother}
+\begin{defother}{Drawing option}{:text-style}\end{defother}
+\begin{defother}{Drawing option}{:line-style}\end{defother}
+\begin{defclass}{$<$line-style$>$}{$<$standard-object$>$}\end{defclass}
+\begin{defun}{make-line-style} \&key (\textit{unit} \texttt{:normal}) (\textit{thickness} \texttt{1}) \textit{dashes} (\textit{joint-shape} \texttt{:miter}) (\textit{cap-shape} \texttt{:butt)}\end{defun}
+\begin{defgeneric}{line-style-thickness}\textit{line-style}\end{defgeneric}
+\begin{defgeneric}{line-style-joint-shape}\textit{line-style}\end{defgeneric}
+\begin{defgeneric}{line-style-cap-shape}\textit{line-style}\end{defgeneric}
+\begin{defgeneric}{line-style-dashes}\textit{line-style}\end{defgeneric}
+\begin{defgeneric}{line-style-unit}\textit{line-style}\end{defgeneric}
+\begin{defother}{Drawing option}{:line-unit}\end{defother}
+\begin{defother}{Suboption}{:normal}\end{defother}
+\begin{defother}{Suboption}{:point}\end{defother}
+\begin{defother}{Drawing option}{:line-thickness}\end{defother}
+\begin{defother}{Drawing option}{:line-dashes}\end{defother}
+\begin{defother}{Drawing option}{:line-joint-shape}\end{defother}
+\begin{defother}{Drawing option}{:line-cap-shape}\end{defother}
+\begin{defun}{make-contrasting-dash-patterns} \textit{n} \&optional \textit{k}\end{defun}
+\begin{defun}{contrasting-dash-patterns-limit}\end{defun}
+\begin{defun}{make-translation-transformation} \textit{$\delta$ x $\delta$ y}\end{defun}
+\begin{defun}{make-rotation-transformation} \textit{$\theta$}\ \&optional \textit{origin}\end{defun}
+\begin{defun}{make-rotation-transformation*}\textit{angle origin-x origin-y}\end{defun}
+\begin{defun}{make-scaling-transformation}\textit{mx my} \&optional \textit{origin}\end{defun}
+\begin{defun}{make-reflection-transformation} \textit{point-1 point-2}\end{defun}
+\begin{defun}{make-reflection-transformation*} \textit{x1 y1 x2 y2}\end{defun}
+\begin{defun}{make-transformation} \textit{mxx mxy myx myy tx ty}\end{defun}
+\begin{defun}{make-3-point-transformation} \textit{point-1 point-2 point-3 point-1-image point-2-image point-3-image}\end{defun}
+\begin{defun}{make-3-point-transformation*} \textit{x1 y1 x2 y2 x3 y3 x1-image y1-image x2-image y2-image x3-image y3-image}\end{defun}
+\begin{defclass}{$<$transformation$>$}{$<$standard-object$>$}\end{defclass}
+\begin{defconstant}{+identity-transformation+}\end{defconstant}
+\begin{defmethod}{=} \textit{transform1 transform2}\end{defmethod}
+\begin{defgeneric}{identity-transformation-p} \textit{transform}\end{defgeneric}
+\begin{defgeneric}{translation-transformation-p} \textit{transform}\end{defgeneric}
+\begin{defgeneric}{invertible-transformation-p} \textit{transform}\end{defgeneric}
+\begin{defgeneric}{reflection-transformation-p} \textit{transform}\end{defgeneric}
+\begin{defgeneric}{rigid-transformation-p} \textit{transform}\end{defgeneric}
+\begin{defgeneric}{even-scaling-transformation-p} \textit{transform}\end{defgeneric}
+\begin{defgeneric}{scaling-transformation-p} \textit{transform}\end{defgeneric}
+\begin{defgeneric}{rectilinear-transformation-p} \textit{transform}\end{defgeneric}
+\begin{defgeneric}{compose-transformations} \&rest \textit{transformations}\end{defgeneric}
+\begin{defgeneric}{compose-translation-with-transformation} \textit{transform dx dy}\end{defgeneric}
+\begin{defgeneric}{compose-scaling-with-transformation} \textit{transform mx my} \&optional \textit{origin}\end{defgeneric}
+\begin{defgeneric}{compose-rotation-with-transformation} \textit{transform angle} \&optional \textit{origin}\end{defgeneric}
+\begin{defgeneric}{compose-transformation-with-translation} \textit{transform dx dy}\end{defgeneric}
+\begin{defgeneric}{compose-transformation-with-scaling} \textit{transform mx my} \&optional \textit{origin}\end{defgeneric}
+\begin{defgeneric}{compose-transformation-with-rotation} \textit{transform angle} \&optional \textit{origin}\end{defgeneric}
+\begin{defgeneric}{invert-transformation} \textit{transform}\end{defgeneric}
+\begin{defmacro}{with-rotation} (\textit{medium angle} \&optional \textit{origin}) \&body \textit{body}\end{defmacro}
+\begin{defmacro}{with-translation} (\textit{medium dx dy}) \&body \textit{body}\end{defmacro}
+\begin{defmacro}{with-scaling} (\textit{medium sx} \&optional \textit{sy}) \&body \textit{body}\end{defmacro}
+\begin{defmacro}{with-room-for-graphics}(\&optional \textit{stream} \&key \textit{height} (first-quadrant t) (move-cursor t) \textit{record-type}) \&body \textit{body}\end{defmacro}
+\begin{defmacro}{with-local-coordinates}(\&optional \textit{stream x y}) \&body \textit{body}\end{defmacro}
+\begin{defmacro}{with-first-quadrant-coordinates} (\&optional \textit{stream x y}) \&body \textit{body}\end{defmacro}
+\begin{defgeneric}{transform-region}  \textit{transformation region}\end{defgeneric}
+\begin{defgeneric}{untransform-region} \textit{transformation region}\end{defgeneric}
+\begin{defgeneric}{transform-position} \textit{transform x y}\end{defgeneric}
+\begin{defgeneric}{untransform-position} \textit{transform x y}\end{defgeneric}
+\begin{defgeneric}{transform-distance} \textit{transform dx dy}\end{defgeneric}
+\begin{defgeneric}{untransform-distance} \textit{transform dx dy}\end{defgeneric}
+\begin{defgeneric}{transform-rectangle*} \textit{transform x1 y1 x2 y2}\end{defgeneric}
+\begin{defgeneric}{untransform-rectangle*} \textit{transform x1 y1 x2 y2}\end{defgeneric}
+\section{Text Styles}
+\textit{family}\\
+KLIM allows one to include font families installed on a system (or perhaps packaged with the software) in typographic decisions--they should be specified by a string which corresponds to the name of the file containing the font; what file types that are to be considered fonts are of course implementation dependent (though two font types, TrueType and OpenType, are recommended, if only for the fact that as of this writing they are in common use), e.g. ``Helvetica''. In order to maintain a well-defined text style, one is allowed to pass in a \textit{precedence list} of font families to use--if the first font-family cannot be displayed for whatever reason, the next one is tried, and if it can't be displayed, the next; and so on . KLIM also supports 4 default family values, which are implementation-dependent: \texttt{:mono}, \texttt{:serif}, \texttt{:sans-serif}, and \texttt{nil}. An example of a family precedence list is given: \texttt{(''Helvetica'' ''TeXGyreHeros'' ''Helvetica Neue'' ''Nimbus Sans L'' ''Akzidenz-Grotesk'' ''Univers'' ''Arial'' :sans-serif)} \\
+\textit{face}\\
+A modification of the family. KLIM supports the faces \texttt{:roman}, \texttt{:bold}, \texttt{:italic}, \texttt{(:bold :italic)}, or \texttt{nil}.\\
+\textit{size}\\
+The size of the characters. Either it is one of the sizes provided(\texttt{:tiny}, \texttt{:very-small}, \texttt{:small}, \texttt{:normal}, \texttt{:large}, \texttt{:very-large}, \texttt{:huge}, \texttt{:smaller}, \texttt{:larger}), or the point size, or \texttt{nil}.\\
+\begin{defvar}{*default-text-style*}\end{defvar}
+\begin{defother}{Text style option}{:text-family}\end{defother}
+\begin{defun}{text-style-family}\end{defun}
+\begin{defother}{Text style option}{:text-face}\end{defother}
+\begin{defun}{text-style-face}\end{defun}
+\begin{defother}{Text style option}{:text-size}\end{defother}
+\begin{defun}{text-style-size}\end{defun}
+\begin{defgeneric}{parse-text-style} \textit{text-style}\end{defgeneric}
+\begin{defgeneric}{merge-text-style} \textit{style1 style2}\end{defgeneric}
+\begin{defgeneric}{text-style-components} \textit{text-style medium}\end{defgeneric}
+\begin{defgeneric}{text-style-ascent} \textit{text-style medium}\end{defgeneric}
+\begin{defgeneric}{text-style-descent} \textit{text-style medium}\end{defgeneric}
+\begin{defgeneric}{text-style-height} \textit{text-style medium}\end{defgeneric}
+\begin{defgeneric}{text-style-width} \textit{text-style medium}\end{defgeneric}
+\begin{defgeneric}{text-style-fixed-width-p} \textit{text-style medium}\end{defgeneric}
+\begin{defgeneric}{text-style-mapping} \textit{port style} \&optional \textit{character-set}\end{defgeneric}
+\begin{defmethod}{(setf text-style-mapping)} \textit{mapping port text-style} \&optional \textit{character-set}\end{defmethod}
+\begin{defun}{make-text-style} \textit{family face size}\end{defun}
+\begin{defmacro}{with-text-style} (\textit{medium style}) \&body \textit{body}\end{defmacro}
+\begin{defmacro}{with-text-family} (\textit{medium family}) \&body \textit{body}\end{defmacro}
+\begin{defmacro}{with-text-face} (\textit{medium face}) \&body \textit{body}\end{defmacro}
+\begin{defmacro}{with-text-size} (\textit{medium size}) \&body \textit{body}\end{defmacro}
+\section{Color}
+\begin{defclass}{$<$palette$>$}{$<$standard-object$>$}\end{defclass}
+\begin{defun}{palette?} \textit{object} \end{defun}
+\begin{defgeneric}{palette-color?} \textit{palette} \end{defgeneric}
+\begin{defgeneric}{palette-mutable-p} \textit{pallete} \end{defgeneric}
+\begin{defgeneric}{make-palette} \textit{port}\end{defgeneric}
+\begin{defgeneric}{frame-palette} \textit{frame}\end{defgeneric}
+\begin{defgeneric}{frame-manager-palette} \textit{frame-manager}\end{defgeneric}
+\begin{condition}{palette-full}\end{condition}
+\begin{defgeneric}{palette-full-palette} \textit{palette-full-condition}\end{defgeneric}
+\begin{defgeneric}{palette-full-color} \textit{palette-full-condition}\end{defgeneric}
+\begin{defvar}{*use-closest-color*}\end{defvar}
+\begin{defgeneric}{find-closest-matching-color} \textit{palette desired-color}\end{defgeneric}
+\begin{named-restart}{use-other-color}\end{named-restart}
+\begin{defgeneric}{cadd-colors-to-palette} \textit{palette} \&rest \textit{colors}\end{defgeneric}
+\begin{defgeneric}{remove-colors-from-palette} \textit{palette} \&rest \textit{colors}\end{defgeneric}
+\begin{defgeneric}{port-default-palette} \textit{port} \end{defgeneric}
+\begin{defun}{make-ihs-color} \textit{intensity hue saturation} \end{defun}
+\begin{defun}{make-rgb-color} \textit{red green blue}\end{defun}
+\begin{defun}{make-gray-color} \textit{luminance}\end{defun}
+\begin{defgeneric}{color-ihs} \textit{color} \end{defgeneric}
+\begin{defgeneric}{color-rgb} \textit{color} \end{defgeneric}
+\begin{defun}{make-contrasting-inks} \textit{n} \&optional \textit{k}\end{defun}
+\begin{defun}{contrasting-inks-limit} \textit{port}\end{defun}
+\begin{defclass}{$<$color$>$}{$<$standard-object$>$}\end{defclass}
+\begin{defclass}{$<$device-color$>$}{$<$color$>$}\end{defclass}
+\begin{defgeneric}{device-color-pixel} \textit{device-color}\end{defgeneric}
+\begin{defgeneric}{device-color-palette} \textit{device-color}\end{defgeneric}
+\begin{defgeneric}{device-color-color} \textit{device-color}\end{defgeneric}
+\begin{defgeneric}{make-device-color} \textit{palette pixel}\end{defgeneric}
+\begin{defun}{convert-rgb-to-ihs} \textit{red green blue}\end{defun}
+\begin{defun}{convert-ihs-to-rgb} \textit{intensity hue saturation}\end{defun}
+\begin{defgeneric}{make-dynamic-color} \&key (\texttt{:color +black+})\end{defgeneric}
+\begin{defgeneric}{dynamic-color-color} \textit{dynamic-color}\end{defgeneric}
+\begin{defmethod}{(set dynamic-color-color)} \textit{color dynamic-color}\end{defmethod}
+\begin{defgeneric}{recolor-dynamic-color} \textit{dynamic-color color}\end{defgeneric}
+\begin{defmacro}{with-delayed-recoloring} \&body \textit{body}\end{defmacro}
+\begin{defun}{make-layered-color-set} \&rest \textit{layers}\end{defun}
+\begin{defgeneric}{layered-color} \textit{set} \&rest \textit{layers}\end{defgeneric}
+\begin{defconstant}{+black+}\end{defconstant}
+\begin{defconstant}{+white+}\end{defconstant}
+\begin{defconstant}{+red+}\end{defconstant}
+\begin{defconstant}{+green+}\end{defconstant}
+\begin{defconstant}{+blue+}\end{defconstant}
+\begin{defconstant}{+magenta+}\end{defconstant}
+\begin{defconstant}{+cyan+}\end{defconstant}
+\begin{defconstant}{+yellow+}\end{defconstant}
+\begin{defun}{find-named-color} \textit{name palette} \&key \texttt{:errorp}\end{defun}
+\section{Designs}
+\begin{defconstant}{+foreground-color+}\end{defconstant}
+\begin{defconstant}{+background-color+}\end{defconstant}
+\section{Presentations}
+\begin{defmacro}{with-output-as-presentation} (\textit{stream object type} \&key \texttt{:single-box :allow-sensitive-inferiors :modifier :parent :record-type}) \&body \textit{body}\end{defmacro}
+\begin{defun}{present} \textit{object} \&optional \textit{presentation-type} \&key (\texttt{:stream *standard-output*}) \texttt{:view :modifier :acceptably :for-context-type :single-box :allow-sensitive-inferiors :sensitive :query-identifier :prompt :record-type}\end{defun}
+\begin{defun}{present-to-string} \textit{object} \&optional \textit{presentation-type} \&key \texttt{:view :acceptably :for-context-type :string :index}\end{defun}
+\begin{defclass}{$<$presentation$>$}{$<$standard-object$>$}\end{defclass}
+\begin{defclass}{$<$standard-presentation$>$}{$<$presentation$>$}\end{defclass}
+\begin{defun}{presentationp} \textit{object}\end{defun}
+\begin{defgeneric}{presentation-object} \textit{presentation}\end{defgeneric}
+\begin{defgeneric}{presentation-type} \textit{presentation}\end{defgeneric}
+\begin{defvar}{*input-context*}\end{defvar}
+\begin{defun}{input-context-type} \textit{context-entry}\end{defun}
+\begin{defmacro}{with-input-context} (\textit{type} \&key \texttt{:override}) (\&optional \textit{object-var type-var event-var options-var}) \textit{form} \&body \textit{clauses}\end{defmacro}
+\begin{defun}{accept} \textit{type} \&rest \textit{accept-args} \&key \texttt{:stream :view :default :default-type :history :provide-default :prompt :prompt-mode :display-default :query-identifier :activation-gestures :additional-activation-gestures :delimiter-gestures :additional-delimiter-gestures :insert-default (:replace-input t) :present-p (:active-p t)}\end{defun}
+\begin{defun}{accept-from-string} \textit{type string} \&key \texttt{:view :default :default-type :activation-gestures :additional-activation-gestures :delimiter-gestures :additional-delimiter-gestures (:start 0) :end}\end{defun}
+\begin{defother}{Presentation type}{t}\end{defother}
+\begin{defother}{Presentation type}{null}\end{defother} %CAN this be NIL?
+\begin{defother}{Presentation type}{boolean}\end{defother} 
+\begin{defother}{Presentation type}{symbol}\end{defother}
+\begin{defother}{Presentation type}{keyword}\end{defother}
+\begin{defother}{Presentation type}{number}\end{defother}
+\begin{defother}{Presentation type}{complex} \&optional \textit{type} \end{defother}
+\begin{defother}{Presentation type}{real} \&optional \textit{low high}\end{defother}
+\begin{defother}{Presentation type}{rational}\end{defother}
+\begin{defother}{Presentation type}{ratio} \&optional \textit{low high}\end{defother}
+\begin{defother}{Presentation type}{integer} \&optional \textit{low high}\end{defother}
+\begin{defother}{Presentation type}{float} \&optional \textit{low high} \end{defother}
+\begin{defother}{Presentation type}{character}\end{defother}
+\begin{defother}{Presentation type}{string} \&optional \textit{length}\end{defother}
+\begin{defother}{Presentation type}{pathname}\end{defother}
+\begin{defother}{Presentation type}{completion}  \textit{sequence} \&key \texttt{:test :value-key}\end{defother}
+\begin{defother}{Presentation type abbreviation}{member-sequence} \textit{sequence} \&key \texttt{:test}\end{defother}
+\begin{defother}{Presentation type abbreviation}{member-alist} \textit{alist} \&key \texttt{:test}\end{defother}
+\begin{defother}{Presentation type}{subset-completion} \textit{sequence} \&key \texttt{:test :value-key}\end{defother}
+\begin{defother}{Presentation type abbreviation}{subset} \&rest \textit{elements} \end{defother}
+\begin{defother}{Presentation type abbreviation}{subset-sequence} \textit{sequence} \&key \texttt{:test}\end{defother}
+\begin{defother}{Presentation type abbreviation}{subset-alist} \textit{alist} \&key \texttt{:test}\end{defother}
+\begin{defother}{Presentation type}{sequence} \textit{element-type} \end{defother}
+\begin{defother}{Presentation type}{sequence-enumerated} \&rest \textit{element-type}\end{defother}
+\begin{defother}{Presentation type}{or} \&rest \textit{types} \end{defother}
+\begin{defother}{Presentation type}{and} \&rest \textit{types} \end{defother}
+\begin{defother}{Presentation type abbreviation}{token-or-type} \textit{tokens type}\end{defother}
+\begin{defother}{Presentation type abbreviation}{nil-or-type} \textit{type} \end{defother}
+\begin{defother}{Presentation type abbreviation}{type-or-string} \textit{type} \end{defother}
+\begin{defother}{Presentation type}{expression}\end{defother}
+\begin{defother}{Presentation type}{form}\end{defother}
+\begin{defmacro}{defpresentation-type} \textit{name parameters} \&key \texttt{:options :inherit-from :description :history :parameters-are-types}\end{defmacro}
+\begin{defmacro}{defpresentation-method} \textit{name} \{\textit{qualifiers}\}* \textit{lambda-list} \&body \textit{body}\end{defmacro}
+\begin{defmacro}{defpresentation-generic} \textit{generic-function-name presentation-function-name lambda-list} \&rest \textit{options}\end{defmacro}
+\begin{defmacro}{def-default-presentation-method} \textit{presentation-function-name qualifiers* specialized-lambda-list} \&body \textit{body}\end{defmacro}
+
+\begin{defun}{defpresentation->command}\end{defun}
+\section{The Drawing Plane}
+\section{Coordinates}
+
+\section{Controlling the Look and Feel}
+%%Amongst the `look-and-feel' standard stuff, note how to change the font. We don't want to be stuck with Courier all the time
+\section{Streams}
+\section{Extended Input/Output}
 \chapter{Batteries--Utility Libraries}
 Many of these ``batteries'' are connected to the outside world in such a way that if something were to drastically change, they would be obsoleted and will be updated. They are suggested, but not required, to be included in implementations of {\sc Koioslisp} as standard utility libraries--this is simply a description of a standard ``way'' to do the things described here. Some more complex utilities, such as a BitTorrent library, are not specified here as standard libraries but are encouraged to be developed by {\sc Koioslisp} users.
 \section{Logging}
@@ -1113,14 +1475,6 @@ Standard logging levels include, from least to most severe, \texttt{+dribble+}, 
 \section{Markup Language Processing Tools}
 \section{Internet Protocols}
 \section{Multimedia Services}
-\section{GUIs} %Perhaps replace with a KLIM chapter
-\subsection{KLIM}
-See the KLIM manual.
-\subsection{Tk Interface}
-\subsection{GTK+ Interface}
-\subsection{Qt Interface}
-\subsection{wxWidgets Interface}
-\subsection{GNUstep Interface}
 \chapter{Community Things}
 These are (probably) not to be implemented as part of the language. Rather, they are services designed for the Koioslisp community. In fact, with some of them (such as Lake or LispDoc), there is encouraged to 
 \section{CKLAN} 
