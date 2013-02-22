@@ -8,11 +8,12 @@
 \usepackage{sectsty}
 \usepackage{fontspec}
 \usepackage{ textcomp }
+\usepackage{makeidx}
 \usepackage[usenames,dvipsnames,svgnames]{xcolor}
 \setmonofont[Scale=0.8]{Monaco}
 \setsansfont{TeXGyreHeros}
 \allsectionsfont{\sffamily}
-\newenvironment{defother}[2]{[\textit{#1}]\\\texttt{#2}}{\\}
+\newenvironment{defother}[2]{[\textit{#1}]\\\texttt{#2}\index{#2}}{\\}
 \newenvironment{defun}[1]{\begin{defother}{Function}{#1}}{\end{defother}}
 \newenvironment{defgeneric}[1]{\begin{defother}{Generic Function}{#1}}{\end{defother}}
 \newenvironment{defmethod}[1]{\begin{defother}{Method}{#1}}{\end{defother}}
@@ -32,6 +33,7 @@
 %%%% Make a MATH package that ships with KL but is not used by default
 
 \title{The Koioslisp Specification and Notes, version 0.0}
+\makeindex
 \begin{document}
 \maketitle
 \tableofcontents
@@ -39,7 +41,7 @@
 \chapter{Acknowledgements}
 If Koioslisp is a better language than others (a questionable proposition), it is, proverbially, because it stood on the shoulders of giants. First and foremost, I must acknowledge all the Lispers who came before me--the hackers of MIT, BBN, Xerox, the Lisp Machine world, and the Lisp community of today--for without their work, none of this would be possible. In particular, I must acknowledge the great implementors and theorists--giants of the LISP community: Professor John McCarthy, Steve Russell, Jonl White, Guy L. Steele, David Moon, Richard P. Gabriel, Richard M. Stallman, Gerald Jay Sussman, and more. I must also acknowledge the giants of recent times such as Paul Graham, Peter Seibel, Pascal Costanza, Edi Weitz, Zach Beane, Fran\c{c}ois-Ren\'{e} Rideau, James Kalenius, Nikodemus Siivola, Shriram Krishnamurthi, Stanislav Datskovskiy and Rich Hickey.
 \chapter{Inspiration and Design Features}
-Primary inspiration for {\sc Koioslisp} came from the {\sc Common Lisp} programming language (indeed, the document you are reading right now is structured based on the authoritative {\sc Common Lisp} reference, \textit{Common Lisp, the Language} by Guy L. Steele), with influences from {\sc Scheme}, {\sc Clojure}, and {\sc Prolog} A design influence comes from the language {\sc Python} and other modern scripting languages--in that ``batteries'' (i.e. utilities to connect to the rest of the world) should come included in the standard library, which is indeed part of the reason features which seem superfluous are included in {\sc Koioslisp}. In the specification, batteries will be marked clearly, as such utilities are far more likely to change over time. {\sc Koioslisp} attempts to unify the strengths of these Lisp dialects into one--{\sc Common Lisp} for its completeness, macros, object system, historical significance,large amounts of libraries (hopefully, the amount of compatibility given by {\sc Koioslisp} will encourage people to port useful libraries to it, such as ASDF, or SWANK(which is used for SLIME, the free Lisp IDE on Emacs)), and continuity; {\sc Scheme} for its elegance, continuations, and assorted innovations; {\sc Clojure} for its concurrency support, clean hash tables, and lazy evaluation.It also features {\sc Prolog}-style logic programming. In doing so, it tries to avoid the problems of the languages above mentioned. While {\sc Common Lisp} and {\sc Scheme} have aged relatively well, {\sc Common Lisp} has non-lispy hash tables and some marks of age, while {\sc Scheme}, though good for pedagogy, is crippled by its size and lack of powerful macros (though it does have ``hygenic'' macros), as well as some marks of age. Meanwhile, {\sc Clojure} is dependent on the JVM (or, in the case of its new ports, the CLR and JavaScript--which create some incompatibility between implementations, as {\sc Clojure} feeds off of those engines and absorbs their libraries and object systems) and departs from the ``mud ball'' metaphor of lisp, and {\sc Prolog} is entirely unusable for programming-in-the-large, being useful mainly as an extension to Lisp. Throughout this document, some compatibility notes will be recorded.
+Primary inspiration for {\sc Koioslisp} came from the {\sc Common Lisp} programming language (indeed, the document you are reading right now is structured based on the authoritative {\sc Common Lisp} reference, \textit{Common Lisp, the Language} by Guy L. Steele)\cite{clbible}, with influences from {\sc Scheme}, {\sc Clojure}, and {\sc Prolog} A design influence comes from the language {\sc Python} and other modern scripting languages--in that ``batteries'' (i.e. utilities to connect to the rest of the world) should come included in the standard library, which is indeed part of the reason features which seem superfluous are included in {\sc Koioslisp}. In the specification, batteries will be marked clearly, as such utilities are far more likely to change over time. {\sc Koioslisp} attempts to unify the strengths of these Lisp dialects into one--{\sc Common Lisp} for its completeness, macros, object system, historical significance,large amounts of libraries (hopefully, the amount of compatibility given by {\sc Koioslisp} will encourage people to port useful libraries to it, such as ASDF, or SWANK(which is used for SLIME, the free Lisp IDE on Emacs)), and continuity; {\sc Scheme} for its elegance, continuations, and assorted innovations; {\sc Clojure} for its concurrency support, clean hash tables, and lazy evaluation.It also features {\sc Prolog}-style logic programming. In doing so, it tries to avoid the problems of the languages above mentioned. While {\sc Common Lisp} and {\sc Scheme} have aged relatively well, {\sc Common Lisp} has non-lispy hash tables and some marks of age, while {\sc Scheme}, though good for pedagogy, is crippled by its size and lack of powerful macros (though it does have ``hygenic'' macros), as well as some marks of age. Meanwhile, {\sc Clojure} is dependent on the JVM (or, in the case of its new ports, the CLR and JavaScript--which create some incompatibility between implementations, as {\sc Clojure} feeds off of those engines and absorbs their libraries and object systems) and departs from the ``mud ball'' metaphor of lisp, and {\sc Prolog} is entirely unusable for programming-in-the-large, being useful mainly as an extension to Lisp. Throughout this document, some compatibility notes will be recorded.
 \chapter{Introduction}
 This is a specification for a {\sc Koioslisp}, a {\sc Lisp} dialect, which will evolve as time goes on and the fickle attitudes of the BDFL, Yash Tulsyan, change. If you are a programmer from C-like languages who expects a C-like syntax and a C++ (or Java/C\#) like object-oriented system imposed upon the user, then please either accept that this will not cater to that palate, or leave. If you are a programmer from Haskell or ML-like languages who is similarly put-off by s-expressions, want a functional style to be imposed upon the user, and caution against side-effects, we advise a similar course of action. As of this moment, this specification does not come with any standard implementation, due to the fact that the BDFL is currently a simple student who has not yet learned how to create a fully-featured compiler or an interpreter.
 \section{Do We Really Need Another Dialect?}
@@ -98,8 +100,53 @@ Though \textit{lazy evaluation} refers to an evaluation strategy, it is useful t
 \section{Type Specifiers}
 \subsection{Algebraic Datatypes}
 %Try to find out type-of's interaction with algebraic types.
-\section{Typeclasses and Monads}
-Because \textsc{Koioslisp} is not a pure language, certain (normally monadic) constructs do not need to be wrapped in monads.
+\begin{defmacro}{datatype} \textit{name lambda-list} \&body \textit{body}\\
+\texttt{datatype} defines \textit{name} to be a type specified in \textit{body}, with the use of \textit{lambda-list} to allow for parametric data types. The new type specifier can be referred to as \textit{name} if \textit{lambda-list} is empty, but otherwise, it can be referred to as \textit{(name arg1 arg2 ...)}. If symbols used in the body of \texttt{datatype} are not quoted, they are taken to refer to other types (and thus cease to be symbols); if no such type has been defined, it is a newly created singleton type.
+The syntax of the body of \texttt{deftype} is that of a type specifier, as that is what is being created.
+
+An example of the use of \texttt{datatype} is given below.
+\end{defmacro}
+
+\begin{lisp}
+(data\= type Rank () (or ace 2 3 4 5 6 7 8 9 10 page knight queen king))\\
+(datatype Suit () (or swords wands coins cups))\\
+(datatype Minor-Arcana () (list Rank Suit))\\
+(datatype Major-Arcana ()\\
+\> (or\=\ Magician High-Priestess Empress Emperor Hierophant Lovers Chariot\\
+\>\> Strength Hermit Wheel-of-Fortune Justice Hanged-Man Death Temperance\\
+\>\> Devil Tower Star Moon Sun Judgement World Fool))\\
+(datatype Tarot () (or Major-Arcana Minor-Arcana))\\
+(type-of Magician) ; \textrm{→} Magician\\
+(type? Magician Major-Arcana) ; \textrm{→} T, T\\
+(type? Magician 'symbol) ; \textrm{→} NIL, T\\
+(type-of '(8 cups)) ; \textrm{→} List\\
+(type? '(8 cups) Tarot) ; \textrm{→} T, T\\
+\end{lisp}
+\section{Monads}
+\textsc{Koioslisp} has a monad facility, inspired by Haskell and Clojure. Because \textsc{Koioslisp} is not a pure language, certain (normally monadic) constructs do not need to be wrapped in monads.
+\begin{defmacro}{defmonad} \textit{name (result-ll result-body) (bind-ll bind-body)} \&optional \textit{docstring} \\
+The first argument to \texttt{defmonad} is the name of the resulting monad. The second is the \texttt{result} function, in the form \texttt{(lambda-list body)}. It is followed by the fourth argument, the \texttt{bind} function, also in the \texttt{(lambda-list body)} format. Optionally, the body may be followed by a docstring, which is simply a string. The lambda-list is technically unnecessary, but allows relative ease in remembering variable names.\end{defmacro}
+\begin{defmacro}{domonad}
+\textit{domonad} takes the name of a monad \end{defmacro}
+\begin{defmacro}{with-monad} \textit{name} \&body \textit{forms}\\
+\texttt{with-monad} evaluates \textit{forms} as if they were evaluated in the monad \textit{name}
+\end{defmacro}
+\subsection{Built-in Monads}
+\subsubsection{Identity}
+\subsubsection{Maybe}
+A function in the \texttt{Maybe} returns either \texttt{Just} \textit{value} or \texttt{Nothing}.
+\subsubsection{List}
+In the \texttt{List} monad, \texttt{result} returns a singleton list containing the argument passed to it. The \texttt{bind} function acts as if \texttt{mappend} were called with the \textit{return-type} being \texttt{list}.
+\subsubsection{Vector}
+In the \texttt{Vector} monad, \texttt{result} returns a singleton vector containing the argument passed to it. The \texttt{bind} function acts as if \texttt{mappend} were called with the \textit{return-type} being \texttt{vector}.
+\subsubsection{Conclist}
+In the \texttt{Conclist} monad, \texttt{result} returns a singleton conclist containing the argument passed to it. The \texttt{bind} function acts as if \texttt{mappend} were called with the \textit{return-type} being \texttt{conclist}.
+\subsubsection{Series}
+In the \texttt{Series} monad, \texttt{result} returns a singleton series containing the argument passed to it. The \texttt{bind} function acts as if \texttt{mappend} were called with the \textit{return-type} being \texttt{series}.
+\subsubsection{IO}
+In the \texttt{IO} monad, \texttt{result} returns \texttt{IO} \textit{value}. The \texttt{bind} function passes the value returned by its first argument to its second argument.
+\subsubsection{STM}
+In the \texttt{STM} monad,  \texttt{result} returns \texttt{STM} \textit{value}. The \texttt{bind} function passes the value returned by its first argument to its second argument.
 \chapter{Program Structure}
 \chapter{Predicates}
 \begin{defun}{eq?}\end{defun}
@@ -238,7 +285,7 @@ This function has the alias $\iota$, that is, the literal small iota character (
 \begin{defmacro}{defmacro*} \textit{name lambda-list} \textlbrackdbl \{\textit{declaration}\}* | \textit{doc-string} \textrbrackdbl \{\textit{form}\}* 
 \texttt{defmacro*} is like \texttt{defmacro}, except that it ensures that the macros are \textit{hygienic}, such as to prevent variable capture.
 \end{defmacro}
-\begin{defmacro}{define-syntax}\end{defmacro}
+\begin{defmacro}{define-syntax}\end{defmacro}\cite{r5rs}
 \begin{defmacro}{syntax-rules}\end{defmacro}
 \section{Expansion of Macros}
 \begin{defun}{macroexpand} \textit{form} \&optional \textit{env}\end{defun}
@@ -529,7 +576,7 @@ All of the pure advanced sequence generic functions (save \texttt{map}) should h
 \begin{defmethod}{member-if}\end{defmethod}
 \begin{defun}{tail?}\end{defun}%Also, create generic "contains"
 %%Rename in light of SERIES "tail" function. Or rename that...
-\begin{defun}{citcular-list?}\end{defun}
+\begin{defun}{circular-list?}\end{defun}
 \section{Association Lists}
 \begin{defun}{acons}\end{defun}
 \begin{defun}{pairlis}\end{defun}
@@ -614,19 +661,18 @@ The \textit{maphash} function maps over every entry of the hash-table \textit{ha
 
 %% Perhaps remove? I'm not sure.... What would we do with strings and bit-vectors?
 What Common Lisp called \texttt{vector-push-extend} has been rechristened \texttt{vector-push}; Common Lisp's \texttt{vector-push} (a less-useful case of \texttt{vector-push-extend}) has been removed from the language.
-\chapter{Tuples}
-In \textsc{Koioslisp}, tuples are designed to potentially produce particularly efficient parallel code. They are modelled, in part, after the ``conc lists'' %Is this really what they're called?
-of the Fortress programing language.
-%% Perhaps change everything (left. right, etc.) into generics, but tuples are well suited because balancing-binary-tree 
+\chapter{Conclists}
+In \textsc{Koioslisp}, conclists are designed to potentially produce particularly efficient parallel code. They are modelled, in part, after their use in the Fortress programing language.
+%% Perhaps change everything (left. right, etc.) into generics, but conclists are well suited because balancing-binary-tree 
 
 %% OK, how the hell is this going to interact with concurrency?
 %% Is it implicitly concurrent?
-%% If so, what about non-Tuple sequences?
+%% If so, what about non-Conclist sequences?
 %%% This is an issue I can worry about somewhat later, but I MUST worry about it eventually.
 
 
-\begin{defun}{tuple}\end{defun}
-\begin{defun}{tuple?}\end{defun}
+\begin{defun}{conclist}\end{defun}
+\begin{defun}{conclist?}\end{defun}
 \begin{defun}{conc}\end{defun}
 \begin{defmethod}{empty?}\end{defmethod}
 \begin{defun}{singleton?}\end{defun}
@@ -640,81 +686,74 @@ of the Fortress programing language.
 \begin{defun}{divide-and-conc}\end{defun}
 
 \chapter{Strings}
-%Should strings be immutable?
-%% I think the Ruby solution is good (for now):
-%% Mutable by default, but with a "freeze" mechanism
-%% However, I'm not sure whether one could still reap the benefits of array-strings
-A string is a sequence of characters.
-\begin{defgeneric}{str}\end{defgeneric} %Take in mind Kalenius's comments on this
-\section{String Pattern Matching}
-Koioslisp supports pattern matching both at the string level (here), and the tree level (the ``Pattern Matching'' chapter), with the inspiration for the string-based pattern matching being SNOBOL.\\
-\begin{defun}{match}\end{defun} %Rename. 
-\begin{defun}{replace}\end{defun}%Perhaps rename
-\begin{defun}{replace!}\end{defun}
-\begin{defun}{replace*}\end{defun}
-\begin{defun}{replace*!}\end{defun}
-%% Perhaps not defun; it specifies a pattern!
-%% Or maybe not? 
-\begin{defun}{make-pattern}\end{defun} % *Probably* can be a function. Allows recursion in patterns.
-\begin{defun}{str-span}\end{defun}
-\begin{defun}{str-break}\end{defun}
-\begin{defun}{l-pos}\end{defun}
-\begin{defun}{r-pos}\end{defun}
-\begin{defun}{str-or}\end{defun}
-\begin{defun}{str-not}\end{defun}
-\begin{defun}{match-len}\end{defun}
-\begin{defun}{all-matches}\end{defun} %Rename: see above
-\begin{defun}{str-fail!}\end{defun}
-\begin{defun}{arbstr}\end{defun}
-\begin{defun}{arb-num-str}\end{defun}
-
-\subsection{Regular Expressions}
-Another, often quicker, method for recognizing patterns in strings is through the use of \textit{regular expressions}.
-%Should I include regexen?
+% Note that "uppercase" and "lowercase" MUST extend to Greek and Cyrillic etc.
+A string is a vector of characters. Used as a type specifier, \texttt{string} is equivalent to \texttt{(vector character)} and \texttt{(array character (*))}.\\
+\begin{defun}{str} \&rest \textit{args}\\
+\texttt{str} is in the spirit of the Clojure function of the same name: it takes an arbitrary number of arguments, and concatenates the printed forms of them into a single string, which it then returns.\end{defun} %Take in mind Kalenius's comments on this
+\section{Comparison of Strings}
+\begin{defmethod}{equal} (\textit{a} \texttt{string}) (\textit{b} \texttt{string}) \&rest \textit{keys} \&key \texttt{:recursive} (\texttt{:case-sensitive} \texttt{t}) \texttt{:start1 :end1 :start2 :end2} \&allow-other-keys\\
+\texttt{equal} behaves like \texttt{string=} if the key \texttt{:case-sensitive} is not \texttt{nil}, which is the default. Otherwise, it behaves like \texttt{string-equal}. It accepts 
+\end{defmethod}
+\begin{defun}{string$=$} \textit{string1 string2} \&key  \texttt{:start1 :end1 :start2 :end2}\\
+\texttt{string$=$} \end{defun}
+\begin{defun}{string-equal}\end{defun}
+\begin{defun}{string$<$}\end{defun}
+\begin{defun}{string$>$}\end{defun}
+\begin{defun}{string$<=$}\end{defun}
+\begin{defun}{string$>=$}\end{defun}
+\begin{defun}{string$/=$}\end{defun}
+\begin{defun}{string-less?}\end{defun}
+\begin{defun}{string-greater?}\end{defun}
+\begin{defun}{string-not-less?}\end{defun}
+\begin{defun}{string-not-greater?}\end{defun}
+\begin{defun}{string-not-equal?}\end{defun}
+\section{Regular Expressions}
+Koioslisp supports the use of \textit{\index{regular expressions}} for quick-and-dirty parsing, the API being inspired by Edi Weitz's excellent CL-PPCRE\cite{clppcre}
 \begin{defun}{splitre} \end{defun}
-%% Lispify the SNOBOL syntax:
-%(Copied from SnoPy doc)
-%% See the SNOBOL4 tutorial for a more...*coherent* explanation
-% A & B -- Match a followed by matching b
-% A or B -- Match A, and if that doesn't succeed, match B
-%Uses backtracking. E.g.: 
-%% (A or B) & (C or D) & (E or F)
-%%Attempt to match A. If it succeeds, attempt to match C. If it succeeds, attempt to match E.
-%%If E fails, attempt to match F. If F fails, attempt to match D (instead of C), and then try with E
-%% ("ABC" or "AB") & ("DEF" or "CDE") & ("GH" or "IJ")
-%% will try (in this order):
-%% ABC(.*)DEF(.*)GH
-%% ABC(.*)DEF(.*)IJ
-%% ABC(.*)CDE(.*)GH
-%% ABC(.*)CDE(.*)IJ
-%% AB(.*)DEF(.*)GH
-%% AB(.*)DEF(.*)IJ
-%% AB(.*)CDE(.*)GH
-%% AB(.*)CDE(.*)IJ
-% Arb : matches any string. First matches null string, then one char...fails if entire string is matched
-% Bal : matches paren-balanced strings
-% Cancel : aborts; signals failure
-% Fail : unconditionally fail
-% Fence : matches null string; if a failure causes alternatives to be matched, aborts
-% Rest : match from the current point to the last char. in the string 
-% Succeed : unconditionally succeed
-% (any s) : where s is a string, match a char that is any one of the chars in s. Fails if the current char is not one of the given set
-% (arbno p) : where p is a pattern, match any number of occurences of the pattern
-% (break s) : where s is a string, match a string of zero or more chars up to but not including a break char which is contained.
-% (breakx s) : See break--but if it is successfully matched, subsequent failure causes an attempt to extend the matched string
-% (fence p) : where p is a pattern, attempts to match the pattern of p including trying all possible alternatives. If one alternative succeeds, the pattern match proceeds, but on a subsequent failure it abandons the quest
-% (len n) : matches a string that is exactly n chars long
-% (not-any s) : matches a char that is not one of the chars in s
-% (span* s) : where s is a string, match a string of zero or more chars that is among the chars given. always chooses the largest possible string, and succeeds.
-% (pos n) : where n is an int, matches the null string if exactly n characters have been matched so far; else fails
-% (rpos n) : like pos, but n characters remain-to-be-matched
-% (rtab n) where n is an int, matches chars from the current position until n chars remain to be matched in the string. Fails if fewer than n chars are in string
-% (tab n) : like rtab n, but "until n chars have been matched in all"
-% (span s) : where s is a string, matches a string of one or more chars that is among the chars given (IN ANY ORDER). Matches the longest such string possible.    
+\begin{defvar}{*property-resolver*}\end{defvar}
+\subsection{Regular Expression Syntax}
+What are here called ``regular expressions'' can in reality parse more than what traditional regular expressions can; they are simply called regular expressions for historical reasons.
+A regular expression literal begins with the characters ``\texttt{\#"}'' and ends with the character ``\texttt{"}''. There are a few variations:\\
+To treat the string matched as multiple lines--that is, to change the behavior of "\^{}" and "\$" to match the beginning and ends of lines within strings as well as the beginning and ending of the string--one begins the regular expression with ``\texttt{\#m"}'' and ends with ``\texttt{"}''\\
+To allow ``\texttt{.}'' to match newlines, the regular expression begins with ``\texttt{\#s"}'' and ends with ``\texttt{"}''.\\
+A \textit{case-insensitive} regular expression begins with ``\texttt{\#i"}'' and ends with ``\texttt{"}''.\\
+These variations, known as modifiers, can be combined: e.g. a regular expression beginning with ``\texttt{\#msi"}'' and ending with ``\texttt{"}'' would use all of them.\\
+Within the regular expression, the syntax follows that of Perl-compatible regular expressions.
+\subsubsection{Regular Expression parse trees}
+Regular expressions can also be specified using \textit{regular expression parse trees} (\textit{REPT}) a la CL-PPCRE\cite{clppcre} (and indeed much of the syntax is directly borrowed from it). In a REPT, none of the regular expression metacharacters are treated specially--they are all interpreted as part of the tree. The syntax for the trees is:\\
+\begin{enumerate}
+\item The keyword \texttt{:null-string} is equivalent to the null string. 
+\item The keyword \texttt{:match-all} is equivalent to the dot in regex syntax.
+\item The keyword \texttt{:word-boundary} is equivalent to ``\texttt{\textbackslash b}'' and the keyword \texttt{:not-word-boundary} is equivalent to ``\texttt{\textbackslash B}'' in regex syntax.
+\item Corresponding to Perl's \textit{character classes} are the keywords \texttt{:digit-char} (``\texttt{\textbackslash d}''), \texttt{:non-digit-char} (``\texttt{\textbackslash D}''), \texttt{:word-char} (``\texttt{\textbackslash w}''), \texttt{:non-word-char} (``\texttt{\textbackslash W}''), \texttt{:whitespace-char} (``\texttt{\textbackslash s}''), and \texttt{:non-whitespace-char} (``\texttt{\textbackslash S}'').
+\item The following keywords correspond to anchors, that is: \texttt{:start-anchor} is equivalent to ``\^{}'', \texttt{:end-anchor} is equivalent to ``\$'', \texttt{:modeless-start-anchor} to ``\textbackslash A'', \texttt{:modeless-end-anchor} to ``\textbackslash Z'',\\ and \texttt{:modeless-end-anchor-no-newline} to ``\textbackslash z''
+\item The following keywords correspond to embedded modifiers (as such, they are kept local to the most local segment of the parse tree they are introduced in): \texttt{:case-insensitive} (``(?i)''), \texttt{:case-sensitive} (``(?-i)''), \texttt{:multi-line-mode} (``(?m)''), \texttt{:not-multi-line-mode} (``(?-m)''), \texttt{:single-line-mode} (``(?s)''), and \texttt{:not-single-line-mode} (``(?-s)'').
+\item \texttt{(:sequence} \textit{parse-trees}*\texttt{)} matches its arguments in sequence. For example, the rept \texttt{(:sequence \#\textbackslash q \#\textbackslash u \#\textbackslash u \#\textbackslash x)} is equivalent to \texttt{\#"quux"}
+\item \texttt{(:alternation} \textit{parse-trees}*\texttt{)} matches any one of its arguments. Thus, \texttt{(:alternation "foo" "baz" "bar" "quux")} is equivalent to \texttt{\#"foo\textbar{}baz\textbar{}bar\textbar{}quux"}.
+\item \texttt{(:group} \textit{parse-trees}*\texttt{)} act like Perl's ``(?:\textit{pattern})'' construct
+\item \texttt{(:branch} \textit{test} \textit{rept1} \textit{rept2}\texttt{)} is treated as the \texttt{(?(\textit{condition})\textit{yes-pattern}|\textit{no-pattern})} is in Perl
+\item The constructs \texttt{(:positive-lookahead} \textit{rept}\texttt{)}, \texttt{(:negative-lookahead} \textit{rept}\texttt{)}, \texttt{(:positive-lookbehind} \textit{rept}\texttt{)}, and \texttt{(:negative-lookbehind} \textit{rept}\texttt{)} do exactly what they say.
+\item \texttt{(:register} \textit{rept}\texttt{)} denotes a register group; they are counted from left to right, indexed at 1 (unfortunately, this is necessary in order for compatibility with CL-PPCRE, and thus Perl)
+\item \texttt{(:named-register} \textit{name rept}\texttt{)} denotes a register, but also assigns it a name \textit{name} (a string), which is case-sensitive, not necessarily unique, and can be referred to using \texttt{:back-reference}
+\item \texttt{(:back-reference} \textit{reference}\texttt{)} is a reference to a register, which may be either a number, or, if it is a named register, a string
+\item \texttt{(:greedy-repetition} \textit{min max rept}\texttt{)}, where \texttt{min} is a non-negative integer and \texttt{max} is either \texttt{nil} or an integer larger than or equal to \texttt{min} will try to match \textit{rept} at least \texttt{min} times and, if \texttt{max} is an integer, at most \texttt{max} times; if \texttt{max} is \texttt{nil}, then it will attempt to match \textit{rept} as much as possible. \texttt{(:non-greedy-repitition} \textit{min max rept}\texttt{)} works similarly, but non-greedily.
+\item \texttt{(:property} \textit{property}\texttt{)} is a named regular expression property (or in the case of \texttt{:inverted-property}, its inverse) with \textit{property} being a function designator--see \texttt{*property-resolver*}
+\item \texttt{(:standalone} \textit{rept}\texttt{)} is an independent expression, e.g. \texttt{(:standalone "foo")} is the same as \texttt{\#"(?}$>$\texttt{bar)"}.
+\item \texttt{(:filter} \textit{function} \&optional \textit{length}\texttt{)} specifies a filter (see ``Regular Expression Filters''), where \textit{function} is a function of one argument and \textit{length} is either a non-negative integer or \texttt{nil}
+\item \texttt{(:regex} \textit{regex}\texttt{)}, where \textit{regex} is a regular expression in the regular syntax.
+\item \texttt{(:char-class} \textit{item}*\texttt{)} is a character class (or, in the case of \texttt{:inverted-char-class}, its inversion) where \textit{item} is either a character, a named property (see above), or a character range, which is \texttt{(:range} \textit{char1 char2}\texttt{)}, where \texttt{(char<=} \textit{char1 char2}\texttt{)} is true. 
+\end{enumerate}
+\subsection{Regular Expression Filters}
+Filters are as in CL-PPCRE\cite{clppcre}:user-defined functions usable in regular-expression parse trees. The function accepts one argument, which is an integer \textit{pos} that represents the current position within the string being matched.
 
-
+\begin{defvar}{*matching-string*} The target string of the current matching\end{defvar}
+\begin{defvar}{*start-pos*} The start index (an integer) of the current matching, corresponding to the \texttt{start} argument in \texttt{scan}. In repeated scans, \texttt{*start-pos*} will move forwards; there \texttt{*initial-start-pos*} may be more useful.\end{defvar}
+\begin{defvar}{*end-pos*} The end index (an integer) of the current matching, corresponding to the \texttt{end} argument in \texttt{scan}\end{defvar}
+\begin{defvar}{*initial-start-pos*} This is like \texttt{*start-pos*}, but in repeated scans, it will remain at the same position\end{defvar}
+\begin{defvar}{*reg-starts*} A vector whose contents are the beginning indices of the corresponding registers in the current regular expression. The ``default'' value of an index is \texttt{nil}.\end{defvar}
+\begin{defvar}{*reg-ends*}A vector whose contents are the ending indices of the corresponding registers in the current regular expression. The ``default'' value of an index is \texttt{nil}.\end{defvar}
 \chapter{The Evaluator}
-\\chapter{Lazy Evaluation}
+\chapter{Lazy Evaluation}
 \textit{Lazy evaluation} is a method for efficiently manipulating large (even theoretically infinite) data structures. Though usually evaluation is eager, Koioslisp provides support for lazy evaluation with explicit annotation. The Koioslisp lazy evaluation facility is partially based on the CLAZY library for Common Lisp, and the Clojure lazy evaluation facility. See also the section on List Comprehension. 
 
 \begin{defmacro}{deflazy}\end{defmacro}
@@ -737,7 +776,7 @@ Unlike \texttt{take-all}, \texttt{take} is useful for large sequences in general
 Like Scheme and Qi, \textsc{Koioslisp} provides continuations, which are mechanisms for abstract control over the flow of execution of a program. Unlike Scheme or Qi, these are \textit{delimited continuations}\\
 
 \begin{defun}{call/cc} \textit{function}\\
-The argument \textit{function} is a function which takes one parameter. CALL/CC can only be called within a WITH-CALL/CC form or an implicit WITH-CALL/CC form. CALL/CC has the alias CALL-WITH-CURRENT-CONTINUATION\end{defun}
+The argument \textit{function} is a function which takes one parameter. call/cc can only be called within a with-call/cc form or an implicit with-call/cc form. call/cc has the alias call-with-current-continuation\end{defun}
 \begin{defmacro}{with-call/cc} \end{defmacro}
 \begin{defmacro}{let/cc}\end{defmacro}
 \begin{defmacro}{lambda/cc}\end{defmacro}
@@ -747,107 +786,20 @@ The argument \textit{function} is a function which takes one parameter. CALL/CC 
 \begin{defmacro}{defgeneric/cc}\end{defmacro} 
 %%% Maybe instead: use SHIFT and RESET as in Wikipedia's article on delimited continuations
 \chapter{Logic Programming}
+% http://docs.racket-lang.org/racklog/glossary.html
+The {\sc Koioslisp} logic programming system is derived from Dorai Sitaram's excellent Schelog and Racklog.
+\begin{defun}{logic-var?}\end{defun}
+\begin{defmacro}{which}\end{defmacro}
+\begin{defmacro}{find-all}\end{defmacro}
+\begin{defmacro}{rel}\end{defmacro}
+%% ! in rels is the cut, part of rel macro syntax
+\begin{defmacro}{assert-rel!}\end{defmacro} %There's GOT TO be a better name for this, but assert is already taken....
+\begin{defmacro}{assert-rel!*}\end{defmacro}
+\begin{defmacro}{cut-delimiter}\end{defmacro}
+\begin{defother}{Cut syntax}{!} \texttt{!} is used to denote the cut within \texttt{cut-delimiter} or \texttt{rel}\end{defother}
+\begin{defun}{unifiable?}\end{defun}
+
 \section{Constraints}
-% http://nikodemus.github.com/screamer/
-% Perhaps replace logic/pattern-matching feature with this, and have them as a special case
-The features described in this section are based on the Common Lisp library Screamer, which adds constraint-programming constructs to Common Lisp.
-\subsection{Nondeterminism}
-A nondeterministic context is:\\
-1. The body of a function defined with \texttt{def-nondet-fun}.\\%%, or a generic function defined with \texttt{def-nondet-generic} and \texttt{def-nondet-method}. \\
-2. The body of a \texttt{for-effects}, \texttt{all-values}, \texttt{print-values}, \texttt{possibly?}, or \texttt{necessary?} form\\
-3. The first argument of a \texttt{one-value} form\\
-4. The second argument of a \texttt{ith-value} form\\
-\begin{defmacro}{either} \&body \textit{alternatives}\end{defmacro}
-\begin{defun}{fail} \end{defun}
-\begin{defun}{trail} \textit{function} \end{defun}
-\begin{defmacro}{all-values} \&body \textit{body} \end{defmacro}
-\begin{defmacro}{one-value} \textit{form} \&optional \textit{default}\end{defmacro}
-\begin{defmacro}{for-effects} \&body \textit{body}\end{defmacro}
-\begin{defmacro}{ith-value} \textit{i form} \&optional \textit{default} \end{defmacro}
-\begin{defmacro}{print-values} \&body \textit{body}\end{defmacro}
-\begin{defmacro}{possibly?} \&body \textit{body}\end{defmacro}
-\begin{defmacro}{necessarily?} \&body \textit{body}\end{defmacro}
-Some macros have been provided to facilitate the creation of non-deterministic functions and generic function, as they cannot, by definition, be called in a deterministic context.\\
-\begin{defmacro}{def-nondet-fun}\end{defmacro} %Like SCREAMER::DEFUN. Or maybe just integrate it into DEFUN...
-\begin{defmacro}{def-nondet-generic}\end{defmacro} %For generic functions. Well, actually, how the hell would this work?! Does it even make sense?
-\begin{defmacro}{def-nondet-method}\end{defmacro}
-\begin{defun}{a-boolean}\end{defun}
-\begin{defgeneric}{a-member-of} \textit{sequence}\end{defgeneric}
-\begin{defun}{an-integer}\end{defun}
-\begin{defun}{an-integer-above} \textit{low}\end{defun}
-\begin{defun}{an-integer-below} \textit{high}\end{defun}
-\begin{defun}{an-integer-between} \textit{low high}\end{defun}
-\begin{defun}{nondet?} \textit{x}\end{defun}
-\begin{defun}{nondet-generic?} \textit{x}\end{defun} %Do I need this?
-\begin{defmacro}{when-failing} (\&body \textit{failing-forms}) \&body \textit{body}\end{defmacro}
-\begin{defmacro}{count-failures} \&body \textit{body} \end{defmacro}
-
-%%APPLY, FUNCALL, and MULTIPLE-VALUE-CALL will be like SCREAMER::APPLY-NONDETERMINISTIC, SCREAMER::FUNCALL-NONDETERMINISTIC, and SCREAMER::MULTIPLE-VALUE-CALL-NONDETERMINISTIC
-\subsection{The Creation and Manipulation of Constraint Variables}
-\begin{defmacro}{assert!} \textit{v}\end{defmacro} 
-\begin{defun}{of-typev} \textit{type} \&optional \textit{name}\end{defun} %Constrains a variable to the type specified. Like a declaration....perhaps integrate into declaration?
-\begin{defun}{value-of} \textit{x} \end{defun} %Perhaps this can get the list of constraints
-\begin{defun}{apply-substitution} \textit{x} \end{defun}
-\begin{defun}{bound?} \textit{x}\end{defun}
-\begin{defun}{ground?} \textit{x}\end{defun}
-\begin{defun}{applyv} \textit{f x} \&rest \textit{more-vars}\end{defun}
-\begin{defun}{funcallv} \textit{f} \&rest \textit{vars}\end{defun}
-\begin{defun}{equalv} \textit{x y}\end{defun} %With alias =v
-\begin{defun}{template} \textit{template} \end{defun} %Should be called automatically with unification functions
-
-\begin{defun}{make-logvar} \&optional \textit{name}\end{defun} %SCREAMER::MAKE-VARIABLE
-
-\begin{defun}{unify} \textit{x y}\\\texttt{(unify x y)} is syntactic sugar for \texttt{(assertv (equalv x y))}\end{defun}
-%% Most likely won't need to use ?x syntax for constraint variables.
-%%Define a function to get a list of the constraints upon constraint variables, like SCREAMER variable syntax
-\subsubsection{Sequences}
-\begin{defun}{a-member-ofv} \textit{vals} \&optional \textit{name}\end{defun}
-\begin{defun}{memberv} \textit{x sequence}\end{defun} %Integrate into MEMBER ?
-
-\subsubsection{Booleans}
-\begin{defun}{a-booleanv} \&optional \textit{name}\end{defun}
-\begin{defun}{booleanpv} \textit{v} \end{defun}
-\begin{defmacro}{knownp} \textit{x} \end{defmacro} %Implemented as a macro to allow compile-time optimizations.
-\begin{defmacro}{decide} \textit{x} \end{defmacro}
-\begin{defun}{notv} \textit{x} \end{defun}
-\begin{defun}{andv} \&rest \textit{vars}\end{defun}
-\begin{defun}{orv} \&rest \textit{vars}\end{defun}
-\begin{defun}{count-truesv} \&rest \textit{vars}\end{defun}
-\subsubsection{Numbers}
-\begin{defun}{a-numberv} \&optional \textit{name}\end{defun}
-\begin{defun}{a-realv} \&optional \textit{name}\end{defun}
-\begin{defun}{a-real-abovev} \textit{low} \&optional \textit{name}\end{defun}
-\begin{defun}{a-real-belowv} \textit{high} \&optional \textit{name}\end{defun}
-\begin{defun}{a-real-betweenv} \textit{low high} \&optional \textit{name}\end{defun}
-\begin{defun}{an-integerv} \&optional \textit{name}\end{defun}
-\begin{defun}{a-integer-abovev} \textit{low} \&optional \textit{name}\end{defun}
-\begin{defun}{a-integer-belowv} \textit{high} \&optional \textit{name}\end{defun}
-\begin{defun}{a-integer-betweenv} \textit{low high} \&optional \textit{name}\end{defun}
-\begin{defun}{numberv?} \textit{x}\end{defun} %Maybe number?v instead of numberv?
-\begin{defun}{realv?} \textit{x}\end{defun}
-\begin{defun}{integerv?} \textit{x}\end{defun}
-\begin{defun}{minv} \textit{x} \&rest \textit{more-vars}\end{defun}
-\begin{defun}{maxv} \textit{x} \&rest \textit{more-vars}\end{defun}
-\begin{defun}{+v} \&rest \textit{vars}\end{defun}
-\begin{defun}{-v} \textit{x} \&rest \textit{vars}\end{defun}
-\begin{defun}{*v} \&rest \textit{vars}\end{defun}
-\begin{defun}{/v} \textit{x} \&rest \textit{vars}\end{defun}
-\begin{defun}{<v} \textit{x} \&rest \textit{vars}\end{defun}
-\begin{defun}{<=v} \textit{x} \&rest \textit{vars}\end{defun}
-\begin{defun}{>=v} \textit{x} \&rest \textit{vars}\end{defun}
-\begin{defun}{>v} \textit{x} \&rest \textit{vars}\end{defun}
-\begin{defun}{/=v} \textit{x} \&rest \textit{vars}\end{defun}
-\subsection{Forcing Solutions}
-\begin{defun}{solution} \textit{arguments ordering-force-function}\end{defun}
-\begin{defun}{static-ordering} \textit{force-function}\end{defun}
-\begin{defun}{reorder} \textit{cost-function terminate-p order force-function}\end{defun}
-\begin{defun}{linear-force} \textit{x} \end{defun}
-
-\subsection{Side Effects in Constraint Programming} 
-\begin{defmacro}{globalc} \&body \textit{body} \end{defmacro} %SCREAMER::GLOBAL
-\begin{defmacro}{localc} \&body \textit{body} \end{defmacro} %SCREAMER::LOCAL
-\subsection{Relations}
-For more convenience, \textsc{Koioslisp} also provides \textit{relations}, allowing a more Prolog-esque style\\
 \chapter{Sockets}
 
 \chapter{Streams}
@@ -880,6 +832,7 @@ The Koioslisp Object System is based on CLOS (Common Lisp Object System) and TEL
 \subsection{Defstruct Options}
 \subsection{BOA Constructors}
 \section{The Meta-Object Protocol}
+This is based on the Common Lisp Meta-Object Protocol, described in Kiczales 1991\cite{Kiczales}
 \begin{defgeneric}{add-dependent}\end{defgeneric}
 \begin{defgeneric}{add-direct-method}\end{defgeneric}
 \begin{defgeneric}{add-direct-subclass}\end{defgeneric}
@@ -897,8 +850,8 @@ The Koioslisp Object System is based on CLOS (Common Lisp Object System) and TEL
 \texttt{(:merge} \textit{readtables+})\\
 \texttt{(:merge-overwriting} \textit{readtables+})\\
 \texttt{(:dispatch-macro-symbol} \textit{d-macro-symbol function})\\
-\texttt{(:macro-char} \textit{macro-char function} \&optional \textit{non-terminating-p})\\\hline
-\texttt{(:syntax-from} \textit{from-readtable from-char to-char})\\\hline
+\texttt{(:macro-char} \textit{macro-char function} \&optional \textit{non-terminating-p})\\
+\texttt{(:syntax-from} \textit{from-readtable from-char to-char})\\
 \end{defmacro}
 \begin{defun}{copy-readtable}\end{defun}
 \begin{defun}{ensure-readtable}\end{defun}
@@ -1058,7 +1011,7 @@ This function returns a formatted string representing the current French Republi
 \begin{defmacro}{or-else} \&rest \textit{args}\\
 \end{defmacro}
 \section{Refs}
-A \textit{ref} is like a Concurrent Haskell \textit{TVar}; it is used for mutable shared state in concurrent programs.
+A \textit{ref} is like a Concurrent Haskell \textit{TVar}; it is used for mutable shared state in concurrent programs\cite{haskellstm}.
 \begin{defun}{ref}\end{defun}
 \begin{defmacro}{defref}\\
 \texttt{(defref x y)} is syntactic sugar for \texttt{(defvar x (ref y))} \end{defmacro}
@@ -1485,4 +1438,7 @@ Lake is the Koioslisp build language, similar to Unix make, Apache Ant, and Ruby
 LispDoc generates documentation (in the form of \LaTeX or HTML) based on docstrings in a given selection of Koioslisp code. It is roughly similar to JavaDoc and RDoc in this respect.
 \section{ASDF-like tools} 
 \chapter{References} 
+\bibliographystyle{plain}
+\bibliography{koioslispspec}
+\printindex
 \end{document}

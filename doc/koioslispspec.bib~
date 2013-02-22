@@ -1,0 +1,38 @@
+@book{clbible,
+author = "Guy L. Steele, Jr.",
+title = "Common {LISP}: the Language",
+year = "1990",
+isbn = "1-55558-041-6",
+publisher = "Digital Press",
+address = "Newton, MA, USA",
+edition = "2"
+}
+@book{Kiczales,
+author = "Gregor Kiczales and Jim {des Rivieres}",
+title = "The Art of the Metaobject Protocol",
+year = "1991",
+isbn = "0262111586",
+publisher = "MIT Press",
+address = "Cambridge, MA, USA"
+}
+@article{r5rs,
+author = "Richard Kelsey and William Clinger and Jonathan Rees and Hal Abelson and N. I. {Adams IV} and R. Kent Dybvig and Christopher T. Haynes and Guillermo J. Rozas and Daniel P. Friedman and D. H. Bartley and R. Halstead and D. Oxley and Eugene Kohlbecker and G. J. Sussman and G. Brooks and Chris Hanson and Guy L. Steele Jr. and Kent M. Pitman and Mitchell Wand",
+title = "Revised^5 Report on the Algorithmic Language",
+journal = "ACM SIGPLAN Notices",
+year = "1998",
+volume = "33",
+pages = "26--76",
+}
+@inproceedings{haskellstm,
+author = "Tim Harris and Simon Marlow and Simon Peyton-Jones and Maurice Herlihy",
+title = "Composable Memory Transactions",
+booktitle = "Proceedings of the tenth ACM SIGPLAN symposium on Principles and practice of parallel programming",
+series = "PPoPP '05",
+year = "2005",
+isbn = "1-59593-080-9",
+location = "Chicago, IL, USA",
+pages = "46--60",
+numpages = "13",
+publisher = "ACM",
+address = "New York, NY, USA",
+}

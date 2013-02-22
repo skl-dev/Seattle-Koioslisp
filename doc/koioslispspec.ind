@@ -1,0 +1,790 @@
+\begin{theindex}
+
+  \item (set dynamic-color-color), 118
+  \item (setf text-style-mapping), 117
+  \item *compile-file-pathname*, 95
+  \item *compile-file-truename*, 95
+  \item *compile-print*, 95
+  \item *compile-verbose*, 95
+  \item *default-text-style*, 116
+  \item *end-pos*, 69
+  \item *features*, 98
+  \item *initial-start-pos*, 69
+  \item *input-context*, 120
+  \item *macroexpand-hook*, 35
+  \item *matching-string*, 69
+  \item *property-resolver*, 68
+  \item *reg-ends*, 70
+  \item *reg-starts*, 69
+  \item *start-pos*, 69
+  \item *use-closest-color*, 117
+  \item +array-dimension-limit+, 63
+  \item +array-rank-limit+, 63
+  \item +array-total-size-limit+, 63
+  \item +background-color+, 119
+  \item +black+, 119
+  \item +blue+, 119
+  \item +cyan+, 119
+  \item +everywhere+, 109
+  \item +foreground-color+, 119
+  \item +green+, 119
+  \item +identity-transformation+, 114
+  \item +magenta+, 119
+  \item +nowhere+, 109
+  \item +red+, 119
+  \item +white+, 119
+  \item +yellow+, 119
+  \item :aliases, 42
+  \item :author, 41
+  \item :clipping-region, 113
+  \item :components, 42
+  \item :depends-on, 42
+  \item :description, 42
+  \item :file, 42
+  \item :ink, 113
+  \item :licence, 41, 42
+  \item :line-cap-shape, 114
+  \item :line-dashes, 114
+  \item :line-joint-shape, 114
+  \item :line-style, 113
+  \item :line-thickness, 114
+  \item :line-unit, 114
+  \item :long-description, 42
+  \item :maintainer, 41
+  \item :module, 42
+  \item :name, 41
+  \item :normal, 114
+  \item :pathname, 42
+  \item :point, 114
+  \item :serial, 42
+  \item :text-face, 116
+  \item :text-family, 116
+  \item :text-size, 116
+  \item :text-style, 113
+  \item :transformation, 113
+  \item :version, 41
+  \item =, 114
+  \item =?, 27
+  \item \%go, 31
+  \item \%prog, 31
+  \item \%prog*, 31
+  \item \%progx, 30
+  \item \%set, 29
+  \item \%setq, 30
+  \item \%tagbody, 31
+
+  \indexspace
+
+  \item accept, 120
+  \item accept-from-string, 120
+  \item accumulate, 32
+  \item acons, 56
+  \item add-dependent, 84
+  \item add-direct-method, 84
+  \item add-direct-subclass, 85
+  \item add-left, 65
+  \item add-method, 85
+  \item add-right, 65
+  \item adjoin, 57
+  \item adjoining, 32
+  \item adjustable-array-p, 63
+  \item after, 101
+  \item after-each, 33
+  \item alias, 29
+  \item allocate-pixmap, 109
+  \item always, 32
+  \item and, 29, 121
+  \item append, 50, 55
+  \item appending, 32
+  \item apropos, 96
+  \item aref, 63
+  \item array-dimension, 63
+  \item array-dimensions, 63
+  \item array-element-type, 63
+  \item array-in-bounds-p, 63
+  \item array-rank, 63
+  \item array-row-major-index, 63
+  \item array-total-size, 63
+  \item assert-rel, 77
+    \subitem *, 77
+  \item assoc, 56, 59
+  \item assoc-if, 56, 59
+  \item atomic, 101
+
+  \indexspace
+
+  \item begin, 30
+  \item binomial-coefficient, 45
+  \item boolean, 120
+  \item bounding-rectangle, 112
+  \item bounding-rectangle*, 112
+  \item bounding-rectangle-bottom, 112
+  \item bounding-rectangle-height, 112
+  \item bounding-rectangle-max-x, 112
+  \item bounding-rectangle-max-y, 112
+  \item bounding-rectangle-min-x, 112
+  \item bounding-rectangle-min-y, 112
+  \item bounding-rectangle-size, 112
+  \item bounding-rectangle-top, 112
+  \item bounding-rectangle-width, 112
+  \item butlast, 55
+
+  \indexspace
+
+  \item caaaar, 53
+  \item caaadr, 54
+  \item caaar, 53
+  \item caadar, 54
+  \item caaddr, 54
+  \item caadr, 53
+  \item caar, 53
+  \item cadaar, 54
+  \item cadadr, 54
+  \item cadar, 53
+  \item cadd-colors-to-palette, 118
+  \item caddar, 54
+  \item cadddr, 54
+  \item caddr, 53
+  \item cadr, 53
+  \item call/cc, 75
+  \item car, 53
+  \item catch, 34
+  \item cdaaar, 54
+  \item cdaadr, 54
+  \item cdaar, 53
+  \item cdadar, 54
+  \item cdaddr, 54
+  \item cdadr, 53
+  \item cdar, 53
+  \item cddaar, 54
+  \item cddadr, 54
+  \item cddar, 53
+  \item cdddar, 54
+  \item cddddr, 54
+  \item cdddr, 53
+  \item cddr, 53
+  \item cdr, 53
+  \item character, 120
+  \item circular-list?, 56
+  \item clamp, 45
+  \item clear, 60
+  \item collect, 33
+  \item collecting, 32
+  \item color-ihs, 118
+  \item color-rgb, 118
+  \item compile, 95
+  \item compile-file, 95
+  \item complement, 49
+  \item completion, 120
+  \item complex, 120
+  \item compose, 29
+  \item compose-rotation-with-transformation, 115
+  \item compose-scaling-with-transformation, 115
+  \item compose-transformation-with-rotation, 115
+  \item compose-transformation-with-scaling, 115
+  \item compose-transformation-with-translation, 115
+  \item compose-transformations, 115
+  \item compose-translation-with-transformation, 115
+  \item conc, 65
+  \item conclist, 65
+  \item conclist?, 65
+  \item conjoin, 29
+  \item conjugate-transpose, 46
+  \item cons, 54
+  \item contrasting-dash-patterns-limit, 114
+  \item contrasting-inks-limit, 118
+  \item convert-ihs-to-rgb, 118
+  \item convert-rgb-to-ihs, 118
+  \item copy-alist, 56
+  \item copy-area, 109
+  \item copy-from-pixmap, 109
+  \item copy-list, 55
+  \item copy-readtable, 87
+  \item copy-seq, 49
+  \item copy-to-pixmap, 108
+  \item copy-tree, 55
+  \item count, 51
+  \item count-if, 51
+  \item count-permutations, 45
+  \item counting, 32
+  \item cut-delimiter, 77
+
+  \indexspace
+
+  \item datatype, 23
+  \item deallocate-pixmap, 109
+  \item declaim, 37
+  \item declare, 37
+  \item def-default-presentation-method, 121
+  \item defadvice, 93
+  \item defapplication-frame, 107
+  \item defapplication-pane, 107
+  \item defgeneric/cc, 75
+  \item define-declaration, 37
+  \item define-syntax, 35
+  \item deflazy, 73
+  \item defloop, 33
+  \item defloop-alias, 33
+  \item defloop-driver, 33
+  \item defloop-sequence, 33
+  \item defmacro, 35
+  \item defmacro*, 35
+  \item defmethod/cc, 75
+  \item defmonad, 23
+  \item defpresentation->command, 121
+  \item defpresentation-generic, 121
+  \item defpresentation-method, 121
+  \item defpresentation-type, 121
+  \item defreadtable, 87
+  \item defref, 101
+  \item defsetter, 30
+  \item defsetter*, 30
+  \item defsystem, 41
+  \item defun/cc, 75
+  \item defzap, 30
+  \item describe, 96
+  \item describe-object, 96
+  \item device-color-color, 118
+  \item device-color-palette, 118
+  \item device-color-pixel, 118
+  \item difference, 110
+  \item disassemble, 95
+  \item disjoin, 29
+  \item disjoint?, 57
+  \item display-loop-clauses, 33
+  \item divide-and-conc, 65
+  \item do, 30
+  \item do*, 30
+  \item documentation, 95
+  \item domonad, 24
+  \item doseq, 30
+  \item dotimes, 31
+  \item draw-arrow, 107
+  \item draw-arrow*, 107
+  \item draw-arrows*, 107
+  \item draw-bezier-curve, 108
+  \item draw-bezier-curve*, 108
+  \item draw-circle, 108
+  \item draw-circle*, 108
+  \item draw-ellipse, 108
+  \item draw-ellipse*, 108
+  \item draw-line, 107
+  \item draw-line*, 107
+  \item draw-lines, 107
+  \item draw-lines*, 108
+  \item draw-oval, 108
+  \item draw-oval*, 108
+  \item draw-pixmap, 109
+  \item draw-pixmap*, 109
+  \item draw-point, 107
+  \item draw-point*, 107
+  \item draw-points, 107
+  \item draw-points*, 107
+  \item draw-polygon, 108
+  \item draw-polygon*, 108
+  \item draw-rectangle, 108
+  \item draw-rectangle*, 108
+  \item draw-rectangles, 108
+  \item draw-rectangles*, 108
+  \item draw-text, 107
+  \item draw-text*, 107
+  \item dribble, 96
+  \item drop, 73
+  \item dynamic-color-color, 118
+
+  \indexspace
+
+  \item ed, 96
+  \item eigenvalues, 46
+  \item eigenvectors, 46
+  \item eighth, 55
+  \item ellipse-center-point, 113
+  \item ellipse-center-point*, 113
+  \item ellipse-end-angle, 113
+  \item ellipse-radii, 113
+  \item ellipse-start-angle, 113
+  \item else, 33
+  \item empty-hash, 59
+  \item empty-set, 57
+  \item empty?, 65
+  \item end?, 54
+  \item ensure-readtable, 87
+  \item eq?, 27
+  \item equal, 67
+  \item eqv?, 27
+  \item even-scaling-transformation-p, 115
+  \item every, 50
+  \item exit-proc, 101
+  \item export, 41
+  \item expression, 121
+
+  \indexspace
+
+  \item factorial, 45
+  \item fifth, 55
+  \item fill, 50
+  \item filter, 50
+  \item filter-if, 50
+  \item finally, 33
+  \item finally-protected, 33
+  \item find, 51
+  \item find-all, 77
+  \item find-closest-matching-color, 117
+  \item find-if, 51
+  \item find-named-color, 119
+  \item find-readtable, 87
+  \item finding, 32
+  \item finish, 33
+  \item first, 54
+  \item first-iteration?, 32
+  \item first-time?, 32
+  \item flatten, 49
+  \item float, 120
+  \item for, 31, 32
+  \item force, 73
+  \item form, 121
+  \item fourth, 54
+  \item frame-manager-palette, 117
+  \item frame-palette, 117
+  \item function-lambda-expression, 95
+
+  \indexspace
+
+  \item gaussian-random, 45
+  \item get-formatted-french-time, 97
+  \item get-french-time, 97
+  \item get-in, 60
+  \item get-local-time, 97
+  \item getref, 101
+
+  \indexspace
+
+  \item h-append, 60
+  \item h-cons, 59
+  \item h-push, 60
+  \item hash-table?, 59
+  \item hash-values, 60
+  \item head, 73
+
+  \indexspace
+
+  \item identity, 98
+  \item identity-transformation-p, 114
+  \item if-first-time, 33
+  \item import, 41
+  \item in, 33, 34
+  \item in-readtable, 87
+  \item initially, 33
+  \item input-context-type, 120
+  \item inspect, 96
+  \item integer, 120
+  \item intern, 41
+  \item intersection, 49, 109
+  \item invert-matrix, 45
+  \item invert-transformation, 115
+  \item invertible-transformation-p, 115
+  \item invoke-with-drawing-options, 113
+  \item iota, 33
+  \item item, 65
+
+  \indexspace
+
+  \item keys, 60
+  \item keyword, 120
+
+  \indexspace
+
+  \item lambda/cc, 75
+  \item last, 55
+  \item layered-color, 119
+  \item lazy, 73
+  \item lazycall, 73
+  \item lazylambda, 73
+  \item lazylet, 73
+  \item ldiff, 55
+  \item leave, 33
+  \item left, 65
+  \item length, 49, 54, 60
+  \item lerp, 45
+  \item less, 57
+  \item let, 30
+  \item let/cc, 75
+  \item line-end-point, 111
+  \item line-end-point*, 111
+  \item line-start-point, 111
+  \item line-start-point*, 111
+  \item line-style-cap-shape, 114
+  \item line-style-dashes, 114
+  \item line-style-joint-shape, 113
+  \item line-style-thickness, 113
+  \item line-style-unit, 114
+  \item lisp-implementation-type, 97
+  \item lisp-implementation-version, 97
+  \item list, 55
+  \item list*, 55
+  \item list?, 55
+  \item load, 41
+  \item load-time-value, 95
+  \item local-time$<$, 96
+  \item local-time$<=$, 96
+  \item local-time$>$, 97
+  \item local-time$>=$, 97
+  \item local-time-adjust, 97
+  \item local-time-day, 96
+  \item local-time-msec, 96
+  \item local-time-sec, 96
+  \item local-time-zone, 96
+  \item local-time/=, 97
+  \item local-time=, 97
+  \item locally, 37
+  \item logic-var?, 77
+  \item loop, 31
+
+  \indexspace
+
+  \item macro-function, 35
+  \item macroexpand, 35
+  \item macroexpand-1, 35
+  \item make-3-point-transformation, 114
+  \item make-3-point-transformation*, 114
+  \item make-array, 63
+  \item make-bounding-rectangle, 112
+  \item make-contrasting-dash-patterns, 114
+  \item make-contrasting-inks, 118
+  \item make-device-color, 118
+  \item make-dynamic-color, 118
+  \item make-ellipse, 112
+  \item make-ellipse*, 112
+  \item make-elliptical-arc, 112
+  \item make-elliptical-arc*, 112
+  \item make-gray-color, 118
+  \item make-hash-table, 59
+  \item make-ihs-color, 118
+  \item make-layered-color-set, 118
+  \item make-line, 111
+  \item make-line*, 111
+  \item make-line-style, 113
+  \item make-list, 55
+  \item make-local-time, 96
+  \item make-palette, 117
+  \item make-point, 110
+  \item make-polygon, 110
+  \item make-polygon*, 110
+  \item make-polyline, 110
+  \item make-polyline*, 110
+  \item make-reflection-transformation, 114
+  \item make-reflection-transformation*, 114
+  \item make-rgb-color, 118
+  \item make-rotation-transformation, 114
+  \item make-rotation-transformation*, 114
+  \item make-scaling-transformation, 114
+  \item make-sequence, 49
+  \item make-set, 57
+  \item make-text-style, 117
+  \item make-transformation, 114
+  \item make-translation-transformation, 114
+  \item map, 50
+  \item map-iota, 45
+  \item map-keys, 60
+  \item map-polygon-coordinates, 111
+  \item map-polygon-segments, 111
+  \item map-reduce, 50
+  \item map-regions, 110
+  \item maphash, 60
+  \item maplist, 56
+  \item mappend, 50
+  \item maximize, 32
+  \item mean, 45
+  \item median, 45
+  \item medium-background, 113
+  \item medium-clipping-region, 113
+  \item medium-copy-area, 108
+  \item medium-default-text-style, 113
+  \item medium-draw-ellipse*, 108
+  \item medium-draw-line*, 108
+  \item medium-draw-lines*, 108
+  \item medium-draw-point*, 108
+  \item medium-draw-points*, 108
+  \item medium-draw-polygon*, 108
+  \item medium-draw-rectangle*, 108
+  \item medium-draw-rectangles*, 108
+  \item medium-draw-text*, 108
+  \item medium-foreground, 113
+  \item medium-ink, 113
+  \item medium-line-style, 113
+  \item medium-text-style, 113
+  \item medium-transformation, 113
+  \item member, 51, 56, 60
+  \item member-alist, 120
+  \item member-if, 51, 56, 60
+  \item member-sequence, 120
+  \item memoize, 29
+  \item merge, 51, 52
+  \item merge-readtables-into, 87
+  \item merge-text-style, 116
+  \item merge-with, 60
+  \item mismatch, 51
+  \item multiply, 32
+
+  \indexspace
+
+  \item nbutlast, 55
+  \item never, 33
+  \item next-iteration, 33
+  \item nil-or-type, 121
+  \item ninth, 55
+  \item not, 27
+  \item notany, 50
+  \item notevery, 50
+  \item nth, 49, 54
+  \item nthcdr, 55
+  \item null, 120
+  \item number, 120
+
+  \indexspace
+
+  \item or, 29, 121
+  \item or-else, 101
+  \item os-type, 97
+  \item os-version, 98
+
+  \indexspace
+
+  \item pair, 59
+  \item pairlis, 56
+  \item palette-color?, 117
+  \item palette-full, 117
+  \item palette-full-color, 117
+  \item palette-full-palette, 117
+  \item palette-mutable-p, 117
+  \item palette?, 117
+  \item parse-text-style, 116
+  \item partial, 29
+  \item partition, 51
+  \item partition-if, 51
+  \item pathname, 120
+  \item pixmap-depth, 109
+  \item pixmap-height, 109
+  \item pixmap-width, 109
+  \item point-position, 110
+  \item point-x, 110
+  \item point-y, 110
+  \item polyline-closed-p, 111
+  \item pop, 55
+  \item port-default-palette, 118
+  \item position, 51
+  \item position-if, 51
+  \item present, 119
+  \item present-to-string, 119
+  \item presentation-object, 119
+  \item presentation-type, 120
+  \item presentationp, 119
+  \item proclaim, 37
+  \item provide, 41
+  \item pset, 30
+  \item push, 55
+  \item pushnew, 55
+
+  \indexspace
+
+  \item rassoc, 56, 59
+  \item rassoc-if, 56, 59
+  \item ratio, 120
+  \item rational, 120
+  \item read-file-into-string, 90
+  \item real, 120
+  \item rebalance, 65
+  \item recieve, 101
+  \item recolor-dynamic-color, 118
+  \item rectangle-height, 111
+  \item rectangle-max-point, 111
+  \item rectangle-min-point, 111
+  \item rectangle-min-x, 111
+  \item rectangle-min-y, 111
+  \item rectangle-size, 111
+  \item rectangle-width, 111
+  \item rectilinear-transformation-p, 115
+  \item reduce, 50, 59
+  \item reducing, 32
+  \item ref, 101
+  \item reflection-transformation-p, 115
+  \item region-contains-position-p, 109
+  \item region-contains-region-p, 109
+  \item region-difference, 107
+  \item region-equal, 109
+  \item region-intersection, 107
+  \item region-intersects-region-p, 109
+  \item region-set-function, 110
+  \item region-set-regions, 110
+  \item regular expressions, 68
+  \item rel, 77
+  \item remove, 50, 59
+  \item remove-colors-from-palette, 118
+  \item remove-duplicates, 50, 51
+  \item remove-if, 50
+  \item repeat, 31
+  \item replace, 50
+  \item require, 41
+  \item rest, 55
+  \item retry, 101
+  \item revappend, 55
+  \item reverse, 49
+  \item rewind, 90
+  \item right, 65
+  \item rigid-transformation-p, 115
+  \item room, 96
+  \item rotate, 30
+  \item row-major-aref, 63
+  \item rref, 45
+
+  \indexspace
+
+  \item scaling-transformation-p, 115
+  \item search, 51
+  \item second, 54
+  \item send, 101
+  \item sequence, 121
+  \item sequence-enumerated, 121
+  \item set, 30
+  \item set-difference, 49
+  \item seventh, 55
+  \item shadow, 41
+  \item shift, 30
+  \item singleton?, 65
+  \item sixth, 55
+  \item sleep, 97
+  \item software-type, 98
+  \item some, 50
+  \item sort, 51, 60
+  \item spawn, 101
+  \item spawn-remotely, 101
+  \item split, 65
+  \item splitre, 68
+  \item stable-sort, 51
+  \item standard-deviation, 45
+  \item step, 96
+  \item str, 67
+  \item string, 120
+  \item string$/=$, 67
+  \item string$<$, 67
+  \item string$<=$, 67
+  \item string$=$, 67
+  \item string$>$, 67
+  \item string$>=$, 67
+  \item string-equal, 67
+  \item string-greater?, 67
+  \item string-less?, 67
+  \item string-not-equal?, 68
+  \item string-not-greater?, 68
+  \item string-not-less?, 67
+  \item subfactorial, 45
+  \item sublis, 56
+  \item subseq, 49
+  \item subset, 121
+  \item subset-alist, 121
+  \item subset-completion, 121
+  \item subset-sequence, 121
+  \item subset?, 57
+  \item subst, 55, 56
+  \item subst-if, 56
+  \item substitute, 51
+  \item substitute-if, 51
+  \item sum, 32
+  \item sxhash, 60
+  \item symbol, 120
+  \item syntax-rules, 35
+  \item syscall, 97
+
+  \indexspace
+
+  \item t, 120
+  \item tail, 73
+  \item tail?, 56
+  \item take, 73
+  \item take-all, 73
+  \item tenth, 55
+  \item text-style-ascent, 116
+  \item text-style-components, 116
+  \item text-style-descent, 116
+  \item text-style-face, 116
+  \item text-style-family, 116
+  \item text-style-fixed-width-p, 117
+  \item text-style-height, 116
+  \item text-style-mapping, 117
+  \item text-style-size, 116
+  \item text-style-width, 117
+  \item the, 37
+  \item there-is, 33
+  \item third, 54
+  \item throw, 34
+  \item time, 96
+  \item timestamp->french, 97
+  \item token-or-type, 121
+  \item trace, 96
+  \item transform-distance, 115
+  \item transform-position, 115
+  \item transform-rectangle*, 116
+  \item transform-region, 115
+  \item translation-transformation-p, 115
+  \item transpose, 45
+  \item tree-equal, 54
+  \item type-or-string, 121
+  \item type?, 27
+
+  \indexspace
+
+  \item unifiable?, 77
+  \item unintern, 41
+  \item union, 49, 109
+  \item unioning, 32
+  \item until, 33
+  \item untrace, 96
+  \item untransform-distance, 116
+  \item untransform-position, 115
+  \item untransform-rectangle*, 116
+  \item untransform-region, 115
+  \item unuse-system, 41
+  \item unwind-protect, 34
+  \item use-other-color, 117
+  \item use-system, 41
+
+  \indexspace
+
+  \item variance, 45
+
+  \indexspace
+
+  \item when, 34
+  \item which, 77
+  \item while, 33
+  \item with, 32, 49
+  \item with-call/cc, 75
+  \item with-compilation-unit, 95
+  \item with-delayed-recoloring, 118
+  \item with-drawing-options, 113
+  \item with-first-quadrant-coordinates, 115
+  \item with-hash-table-iterator, 60
+  \item with-input-context, 120
+  \item with-local-coordinates, 115
+  \item with-monad, 24
+  \item with-output-as-presentation, 119
+  \item with-output-to-pixmap, 109
+  \item with-room-for-graphics, 115
+  \item with-rotation, 115
+  \item with-scaling, 115
+  \item with-text-face, 117
+  \item with-text-family, 117
+  \item with-text-size, 117
+  \item with-text-style, 117
+  \item with-translation, 115
+  \item without-call/cc, 75
+
+  \indexspace
+
+  \item xor, 29
+
+  \indexspace
+
+  \item zap, 29
+
+\end{theindex}

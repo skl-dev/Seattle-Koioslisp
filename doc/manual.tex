@@ -1,0 +1,56 @@
+\documentclass[10pt]{book}
+\usepackage{longtable}
+\usepackage{fullpage}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[utf8]{inputenc}
+\usepackage{sectsty}
+\usepackage{fontspec}
+\usepackage{ textcomp }
+\usepackage[usenames,dvipsnames,svgnames]{xcolor}
+\setmonofont[Scale=0.8]{Monaco}
+\setsansfont{TeXGyreHeros}
+\allsectionsfont{\sffamily}
+\newenvironment{defother}[2]{[\textit{#1}]\\\texttt{#2}}{\\}
+\newenvironment{defun}[1]{\begin{defother}{Function}{#1}}{\end{defother}}
+\newenvironment{defgeneric}[1]{\begin{defother}{Generic Function}{#1}}{\end{defother}}
+\newenvironment{defmethod}[1]{\begin{defother}{Method}{#1}}{\end{defother}}
+\newenvironment{defmacro}[1]{\begin{defother}{Macro}{#1}}{\end{defother}}
+\newenvironment{special-form}[1]{\begin{defother}{Special form}{#1}}{\end{defother}}
+\newenvironment{defvar}[1]{\begin{defother}{Variable}{#1}}{\end{defother}}
+\newenvironment{defconstant}[1]{\begin{defother}{Constant}{#1}}{\end{defother}}
+\newenvironment{defclass}[2]{[\textit{Class}]\\\texttt{#1}\\\textit{Superclasses:} \texttt{#2}\\\textit{Slots:}}{\\}
+\newenvironment{condition}[1]{\begin{defother}{Condition}{#1}}{\end{defother}}
+\newenvironment{named-restart}[1]{\begin{defother}{Named restart}{#1}}{\end{defother}}
+\newenvironment{lisp}{\hrule\begin{ttfamily}\begin{tabbing}}{\par\end{tabbing}\end{ttfamily}\hrule}
+\newcommand{\tab}{\hspace*{2em}}
+\author{Yash Tulsyan}
+\title{Manual for the Koioslisp-13 Programming Language}
+\begin{document}
+\maketitle
+\tableofcontents
+\chapter{Foreword}
+\chapter{A Tutorial}
+\section{Getting Started}
+The canonical first task is to write a program that prints out the words "\texttt{hello, world}" and a newline. The simplest way to do this is to go to a REPL and type in \texttt{(princ "hello, world \textbackslash n")} and then hit return. As promised, it will print "\texttt{hello, world}" and a newline; \texttt{princ} prints the text given to it. This could be replicated by \texttt{(begin (princ "hello,") (princ "world \textbackslash n"))}. However, some would argue that this doesn't count in that it is not a procedure that can be called. To remedy this:\\
+\begin{lisp}
+KL-USER> (defun hello-world () (princ "hello, world \textbackslash n"))\\
+hello-world\\
+KL-USER> (hello-world)\\
+hello, world\\
+\space
+\end{lisp}
+Now it must be explained how this procedure was built. \texttt{defun} defines a procedure that can be called by its first argument, its name. The second arguments represents the arguments it takes in the form of a list. The remaining arguments are the function body. Note that the type of the function need not be specified--it can be declared for efficiency purposes, as we will cover later\\
+It is often said that the canonical example focuses too much on input-output, and that several other examples should be given. One common example is a program to calculate the \textit{n}th factorial number. It follows:\\
+\begin{lisp}
+KL-USER> (def\=un my-factorial (n)\\
+\> "Returns the factorial of its argument"\\
+\>(cond \=((< n 1) 0)\\
+\>\>((= n 1) 1)\\
+\>\>((> n 1) (* n (my-factorial (- n 1))))))
+\end{lisp}
+In this function, the functions \texttt{>}, \texttt{=}, \texttt{<}, \texttt{-}, and \texttt{*} have their usual mathematical meaning. Two questions arise: What does the string do? and What does \texttt{cond} do? The string is a \textit{docstring}, put in between the argument list and the body of \texttt{defun} if specified. Though they are entirely optional, docstrings are not a mere convention: they are used by the built-in functions \texttt{documentation} and \texttt{apropos} to provide help for users who cannot remember the name of a function or perhaps what a function with a given name does. %Well, documentation is a generic function, but...
+ \texttt{cond} is a \textit{conditional}, as implied by its name; it consists of several \textit{clauses}, each consisting of a \textit{test} and a \textit{body}. The tests are evaluated sequentially; if any one clause evaluates to true, it evaluates the body of the clause and returns the value of the \textit{body} as the value of the \texttt{cond} form. The "default" test for a \texttt{cond} form is \texttt{t}: because \texttt{t} is the canonical truth value, it \textit{always} evaluates as true and can thus focus as a catch-all test.\\
+\section{Variables}
+Variables are defined through the 
+\end{document}

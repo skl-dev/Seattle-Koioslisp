@@ -36,7 +36,19 @@
 \contentsline {section}{\numberline {5.21}Unreadable Data Objects}{20}
 \contentsline {section}{\numberline {5.22}Overlap, Inclusion, and Disjointness of Types}{20}
 \contentsline {chapter}{\numberline {6}Scope and Extent}{21}
-\contentsline {chapter}{\numberline {7}Type Specifiers}{23}
+\contentsline {chapter}{\numberline {7}Types}{23}
+\contentsline {section}{\numberline {7.1}Type Specifiers}{23}
+\contentsline {subsection}{\numberline {7.1.1}Algebraic Datatypes}{23}
+\contentsline {section}{\numberline {7.2}Monads}{23}
+\contentsline {subsection}{\numberline {7.2.1}Built-in Monads}{24}
+\contentsline {subsubsection}{Identity}{24}
+\contentsline {subsubsection}{Maybe}{24}
+\contentsline {subsubsection}{List}{24}
+\contentsline {subsubsection}{Vector}{24}
+\contentsline {subsubsection}{Conclist}{24}
+\contentsline {subsubsection}{Series}{24}
+\contentsline {subsubsection}{IO}{24}
+\contentsline {subsubsection}{STM}{24}
 \contentsline {chapter}{\numberline {8}Program Structure}{25}
 \contentsline {chapter}{\numberline {9}Predicates}{27}
 \contentsline {chapter}{\numberline {10}Control Structure}{29}
@@ -81,54 +93,49 @@
 \contentsline {chapter}{\numberline {20}Hash Tables}{59}
 \contentsline {chapter}{\numberline {21}Arrays}{63}
 \contentsline {section}{\numberline {21.1}Vectors}{63}
-\contentsline {chapter}{\numberline {22}Tuples}{65}
+\contentsline {chapter}{\numberline {22}Conclists}{65}
 \contentsline {chapter}{\numberline {23}Strings}{67}
-\contentsline {section}{\numberline {23.1}String Pattern Matching}{67}
-\contentsline {subsection}{\numberline {23.1.1}Regular Expressions}{68}
-\contentsline {chapter}{\numberline {24}The Evaluator}{69}
-\contentsline {chapter}{\numberline {25}Lazy Evaluation}{71}
-\contentsline {section}{\numberline {25.1}Series}{71}
-\contentsline {chapter}{\numberline {26}Continuations}{73}
-\contentsline {chapter}{\numberline {27}Logic Programming}{75}
-\contentsline {section}{\numberline {27.1}Constraints}{75}
-\contentsline {subsection}{\numberline {27.1.1}Nondeterminism}{75}
-\contentsline {subsection}{\numberline {27.1.2}The Creation and Manipulation of Constraint Variables}{76}
-\contentsline {subsubsection}{Sequences}{77}
-\contentsline {subsubsection}{Booleans}{77}
-\contentsline {subsubsection}{Numbers}{77}
-\contentsline {subsection}{\numberline {27.1.3}Forcing Solutions}{78}
-\contentsline {subsection}{\numberline {27.1.4}Side Effects in Constraint Programming}{78}
-\contentsline {subsection}{\numberline {27.1.5}Relations}{79}
-\contentsline {chapter}{\numberline {28}Sockets}{81}
-\contentsline {chapter}{\numberline {29}Streams}{83}
-\contentsline {chapter}{\numberline {30}Objects}{85}
-\contentsline {section}{\numberline {30.1}Classes}{86}
-\contentsline {subsection}{\numberline {30.1.1}Defining Classes}{86}
-\contentsline {subsection}{\numberline {30.1.2}Instance Creation}{86}
-\contentsline {subsection}{\numberline {30.1.3}Slots}{86}
-\contentsline {subsection}{\numberline {30.1.4}Accessing Slots}{86}
-\contentsline {subsection}{\numberline {30.1.5}Inheritance}{86}
-\contentsline {subsubsection}{Inheritance of Methods}{86}
-\contentsline {subsubsection}{Inheritance of Slots}{86}
-\contentsline {subsubsection}{Examples}{86}
-\contentsline {subsection}{\numberline {30.1.6}Built-in Classes}{86}
-\contentsline {subsection}{\numberline {30.1.7}Determining the Class Precedence List}{86}
-\contentsline {subsubsection}{Sorting the Class Precedence Lists}{86}
-\contentsline {subsubsection}{Examples}{86}
-\contentsline {section}{\numberline {30.2}Generic Functions and Methods}{86}
-\contentsline {subsection}{\numberline {30.2.1}Introduction}{86}
-\contentsline {subsection}{\numberline {30.2.2}Agreement on Parameter Specializers and Qualifiers}{86}
-\contentsline {subsection}{\numberline {30.2.3}Keyword Arguments}{86}
-\contentsline {subsection}{\numberline {30.2.4}Method Selection}{86}
-\contentsline {subsection}{\numberline {30.2.5}Determinating the Effective Method}{86}
-\contentsline {subsection}{\numberline {30.2.6}Standard Method Combination}{86}
-\contentsline {subsection}{\numberline {30.2.7}Other Method Combinations}{86}
-\contentsline {subsection}{\numberline {30.2.8}Defining Method Combinations}{86}
-\contentsline {subsection}{\numberline {30.2.9}SET methods}{86}
-\contentsline {section}{\numberline {30.3}Structures}{86}
-\contentsline {subsection}{\numberline {30.3.1}Defstruct Options}{86}
-\contentsline {subsection}{\numberline {30.3.2}BOA Constructors}{86}
-\contentsline {section}{\numberline {30.4}The Meta-Object Protocol}{86}
+\contentsline {section}{\numberline {23.1}Comparison of Strings}{67}
+\contentsline {section}{\numberline {23.2}Regular Expressions}{68}
+\contentsline {subsection}{\numberline {23.2.1}Regular Expression Syntax}{68}
+\contentsline {subsubsection}{Regular Expression parse trees}{68}
+\contentsline {subsection}{\numberline {23.2.2}Regular Expression Filters}{69}
+\contentsline {chapter}{\numberline {24}The Evaluator}{71}
+\contentsline {chapter}{\numberline {25}Lazy Evaluation}{73}
+\contentsline {section}{\numberline {25.1}Series}{73}
+\contentsline {chapter}{\numberline {26}Continuations}{75}
+\contentsline {chapter}{\numberline {27}Logic Programming}{77}
+\contentsline {section}{\numberline {27.1}Constraints}{77}
+\contentsline {chapter}{\numberline {28}Sockets}{79}
+\contentsline {chapter}{\numberline {29}Streams}{81}
+\contentsline {chapter}{\numberline {30}Objects}{83}
+\contentsline {section}{\numberline {30.1}Classes}{84}
+\contentsline {subsection}{\numberline {30.1.1}Defining Classes}{84}
+\contentsline {subsection}{\numberline {30.1.2}Instance Creation}{84}
+\contentsline {subsection}{\numberline {30.1.3}Slots}{84}
+\contentsline {subsection}{\numberline {30.1.4}Accessing Slots}{84}
+\contentsline {subsection}{\numberline {30.1.5}Inheritance}{84}
+\contentsline {subsubsection}{Inheritance of Methods}{84}
+\contentsline {subsubsection}{Inheritance of Slots}{84}
+\contentsline {subsubsection}{Examples}{84}
+\contentsline {subsection}{\numberline {30.1.6}Built-in Classes}{84}
+\contentsline {subsection}{\numberline {30.1.7}Determining the Class Precedence List}{84}
+\contentsline {subsubsection}{Sorting the Class Precedence Lists}{84}
+\contentsline {subsubsection}{Examples}{84}
+\contentsline {section}{\numberline {30.2}Generic Functions and Methods}{84}
+\contentsline {subsection}{\numberline {30.2.1}Introduction}{84}
+\contentsline {subsection}{\numberline {30.2.2}Agreement on Parameter Specializers and Qualifiers}{84}
+\contentsline {subsection}{\numberline {30.2.3}Keyword Arguments}{84}
+\contentsline {subsection}{\numberline {30.2.4}Method Selection}{84}
+\contentsline {subsection}{\numberline {30.2.5}Determinating the Effective Method}{84}
+\contentsline {subsection}{\numberline {30.2.6}Standard Method Combination}{84}
+\contentsline {subsection}{\numberline {30.2.7}Other Method Combinations}{84}
+\contentsline {subsection}{\numberline {30.2.8}Defining Method Combinations}{84}
+\contentsline {subsection}{\numberline {30.2.9}SET methods}{84}
+\contentsline {section}{\numberline {30.3}Structures}{84}
+\contentsline {subsection}{\numberline {30.3.1}Defstruct Options}{84}
+\contentsline {subsection}{\numberline {30.3.2}BOA Constructors}{84}
+\contentsline {section}{\numberline {30.4}The Meta-Object Protocol}{84}
 \contentsline {chapter}{\numberline {31}Input/Output}{87}
 \contentsline {section}{\numberline {31.1}Readtables}{87}
 \contentsline {chapter}{\numberline {32}File System Interface}{89}
@@ -165,27 +172,30 @@
 \contentsline {section}{\numberline {37.2}The Dining Philosophers Problem}{102}
 \contentsline {chapter}{\numberline {38}Backquote}{103}
 \contentsline {chapter}{\numberline {39}Implementation Notes}{105}
-\contentsline {chapter}{\numberline {40}Batteries--Utility Libraries}{107}
-\contentsline {section}{\numberline {40.1}Logging}{107}
-\contentsline {section}{\numberline {40.2}Data Compression}{107}
-\contentsline {section}{\numberline {40.3}Foreign Function Interfaces}{107}
-\contentsline {section}{\numberline {40.4}OS Services and Adaptations}{107}
-\contentsline {subsection}{\numberline {40.4.1}UNIX-specific}{107}
-\contentsline {section}{\numberline {40.5}Cryptography}{107}
-\contentsline {section}{\numberline {40.6}Internet Data Handling}{107}
-\contentsline {section}{\numberline {40.7}Markup Language Processing Tools}{107}
-\contentsline {section}{\numberline {40.8}Internet Protocols}{107}
-\contentsline {section}{\numberline {40.9}Multimedia Services}{107}
-\contentsline {section}{\numberline {40.10}GUIs}{107}
-\contentsline {subsection}{\numberline {40.10.1}KLIM}{107}
-\contentsline {subsection}{\numberline {40.10.2}Tk Interface}{108}
-\contentsline {subsection}{\numberline {40.10.3}GTK+ Interface}{108}
-\contentsline {subsection}{\numberline {40.10.4}Qt Interface}{108}
-\contentsline {subsection}{\numberline {40.10.5}wxWidgets Interface}{108}
-\contentsline {subsection}{\numberline {40.10.6}GNUstep Interface}{108}
-\contentsline {chapter}{\numberline {41}Community Things}{109}
-\contentsline {section}{\numberline {41.1}CKLAN}{109}
-\contentsline {section}{\numberline {41.2}Lake}{109}
-\contentsline {section}{\numberline {41.3}LispDoc}{109}
-\contentsline {section}{\numberline {41.4}ASDF-like tools}{109}
-\contentsline {chapter}{\numberline {42}References}{111}
+\contentsline {chapter}{\numberline {40}KLIM}{107}
+\contentsline {section}{\numberline {40.1}Text Styles}{116}
+\contentsline {section}{\numberline {40.2}Color}{117}
+\contentsline {section}{\numberline {40.3}Designs}{119}
+\contentsline {section}{\numberline {40.4}Presentations}{119}
+\contentsline {section}{\numberline {40.5}The Drawing Plane}{122}
+\contentsline {section}{\numberline {40.6}Coordinates}{122}
+\contentsline {section}{\numberline {40.7}Controlling the Look and Feel}{122}
+\contentsline {section}{\numberline {40.8}Streams}{122}
+\contentsline {section}{\numberline {40.9}Extended Input/Output}{122}
+\contentsline {chapter}{\numberline {41}Batteries--Utility Libraries}{123}
+\contentsline {section}{\numberline {41.1}Logging}{123}
+\contentsline {section}{\numberline {41.2}Data Compression}{123}
+\contentsline {section}{\numberline {41.3}Foreign Function Interfaces}{123}
+\contentsline {section}{\numberline {41.4}OS Services and Adaptations}{123}
+\contentsline {subsection}{\numberline {41.4.1}UNIX-specific}{123}
+\contentsline {section}{\numberline {41.5}Cryptography}{123}
+\contentsline {section}{\numberline {41.6}Internet Data Handling}{123}
+\contentsline {section}{\numberline {41.7}Markup Language Processing Tools}{123}
+\contentsline {section}{\numberline {41.8}Internet Protocols}{123}
+\contentsline {section}{\numberline {41.9}Multimedia Services}{123}
+\contentsline {chapter}{\numberline {42}Community Things}{125}
+\contentsline {section}{\numberline {42.1}CKLAN}{125}
+\contentsline {section}{\numberline {42.2}Lake}{125}
+\contentsline {section}{\numberline {42.3}LispDoc}{125}
+\contentsline {section}{\numberline {42.4}ASDF-like tools}{125}
+\contentsline {chapter}{\numberline {43}References}{127}

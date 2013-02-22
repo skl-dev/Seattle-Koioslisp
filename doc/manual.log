@@ -1,9 +1,9 @@
-This is XeTeX, Version 3.1415926-2.4-0.9998 (TeX Live 2012) (format=xelatex 2012.12.26)  18 FEB 2013 22:03
+This is XeTeX, Version 3.1415926-2.4-0.9998 (TeX Live 2012) (format=xelatex 2012.12.26)  8 FEB 2013 22:22
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**koioslispspec.tex
-(./koioslispspec.tex
+**manual.tex
+(./manual.tex
 LaTeX2e <2011/06/27>
 Babel <v3.8m> and hyphenation patterns for english, dumylang, nohyphenation, ge
 rman-x-2012-05-30, ngerman-x-2012-05-30, afrikaans, ancientgreek, ibycus, arabi
@@ -854,9 +854,6 @@ Package textcomp Info: Setting pplj sub-encoding to TS1/3 on input line 338.
 Package textcomp Info: Setting ptmx sub-encoding to TS1/4 on input line 339.
 Package textcomp Info: Setting ptmj sub-encoding to TS1/4 on input line 340.
 )
-(/usr/local/texlive/2012/texmf-dist/tex/latex/base/makeidx.sty
-Package: makeidx 2000/03/29 v1.0m Standard LaTeX package
-)
 (/usr/local/texlive/2012/texmf-dist/tex/latex/xcolor/xcolor.sty
 Package: xcolor 2007/01/21 v2.11 LaTeX color extensions (UK)
 
@@ -937,808 +934,112 @@ File: svgnam.def 2007/01/21 v2.11 Predefined colors according to SVG 1.1 (UK)
 . * 'bold italic' with NFSS spec.:
 . <->"TeXGyreHeros/BI/ICU:"
 .................................................
-\@indexfile=\write3
-\openout3 = `koioslispspec.idx'.
+ (./manual.aux)
+\openout1 = `manual.aux'.
 
-
-Writing index file koioslispspec.idx
-(./koioslispspec.aux)
-\openout1 = `koioslispspec.aux'.
-
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for EU1/lmr/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for T3/cmr/m/n on input line 37.
-LaTeX Font Info:    Try loading font information for T3+cmr on input line 37.
-
-(/usr/local/texlive/2012/texmf-dist/tex/latex/tipa/t3cmr.fd
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for EU1/lmr/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for T3/cmr/m/n on input line 29.
+LaTeX Font Info:    Try loading font information for T3+cmr on input line 29.
+ (/usr/local/texlive/2012/texmf-dist/tex/latex/tipa/t3cmr.fd
 File: t3cmr.fd 2001/12/31 TIPA font definitions
 )
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 37.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 37.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 29.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 29.
 
 (/usr/local/texlive/2012/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    ... okay on input line 29.
 
 *** you should *not* be loading the inputenc package
 *** XeTeX expects the source to be in UTF8 encoding
 *** some features of other encodings may conflict, resulting in poor output.
-LaTeX Font Info:    Try loading font information for OT1+lmr on input line 38.
+LaTeX Font Info:    Try loading font information for OT1+lmr on input line 30.
 (/usr/local/texlive/2012/texmf-dist/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OML+lmm on input line 38.
+LaTeX Font Info:    Try loading font information for OML+lmm on input line 30.
 
 (/usr/local/texlive/2012/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 38.
+LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 30.
 
 
 (/usr/local/texlive/2012/texmf-dist/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMX+lmex on input line 38.
+LaTeX Font Info:    Try loading font information for OMX+lmex on input line 30.
 
 
 (/usr/local/texlive/2012/texmf-dist/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 38.
+(Font)              <12> on input line 30.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 38.
+(Font)              <8> on input line 30.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 38.
+(Font)              <6> on input line 30.
  [1
 
 
 ] [2
 
 ]
-(./koioslispspec.toc
+(./manual.toc
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 5.
+(Font)              <10> on input line 3.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 5.
+(Font)              <7> on input line 3.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 5.
- [3] [4] [5] [6])
-\tf@toc=\write4
-\openout4 = `koioslispspec.toc'.
+(Font)              <5> on input line 3.
+)
+\tf@toc=\write3
+\openout3 = `manual.toc'.
 
- [7] [8
+ [3] [4
 
 ]
 Chapter 1.
-[9] [10
+[5] [6
 
 ]
 Chapter 2.
-[11] [12
-
-]
-Chapter 3.
-[13] [14
-
-]
-Chapter 4.
-[15] [16
-
-]
-Chapter 5.
 LaTeX Font Info:    Font shape `EU1/Monaco(0)/m/n' will be
-(Font)              scaled to size 8.00003pt on input line 56.
+(Font)              scaled to size 8.00003pt on input line 35.
 
-LaTeX Font Warning: Font shape `EU1/Monaco(0)/m/it' undefined
-(Font)              using `EU1/Monaco(0)/m/n' instead on input line 58.
+Underfull \hbox (badness 10000) in paragraph at lines 35--36
 
-LaTeX Font Info:    Font shape `EU1/Monaco(0)/m/it' will be
-(Font)              scaled to size 8.00003pt on input line 58.
-[17] [18] [19] [20]
-Chapter 6.
-[21
-
-] [22
-
-]
-Chapter 7.
-
-Underfull \hbox (badness 10000) in paragraph at lines 107--109
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 126--134
-
- []
-
-[23] [24]
-Chapter 8.
-[25
-
-] [26
-
-]
-Chapter 9.
-
-Underfull \hbox (badness 10000) in paragraph at lines 152--157
-
- []
-
-[27] [28
-
-]
-Chapter 10.
-
-Underfull \hbox (badness 10000) in paragraph at lines 158--169
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 173--176
-
- []
-
-[29]
-Underfull \hbox (badness 10000) in paragraph at lines 177--184
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 185--187
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 188--190
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 191--193
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 194--202
-
- []
-
-[30]
-Underfull \hbox (badness 10000) in paragraph at lines 203--206
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 207--209
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 210--266
-
- []
-
-[31]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [32]
-Underfull \hbox (badness 10000) in paragraph at lines 268--276
-
- []
-
-[33]
-Underfull \hbox (badness 10000) in paragraph at lines 278--281
-
- []
-
-[34]
-Chapter 11.
-LaTeX Font Info:    Try loading font information for TS1+lmr on input line 284.
-
-(/usr/local/texlive/2012/texmf-dist/tex/latex/lm/ts1lmr.fd
-File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
-Underfull \hbox (badness 10000) in paragraph at lines 283--290
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 291--294
-
- []
-
-[35
-
-] [36
-
-]
-Chapter 12.
-
-Underfull \hbox (badness 10000) in paragraph at lines 297--302
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 303--316
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 317--318
-
- []
-
-[37] [38
-
-]
-Chapter 13.
-[39] [40
-
-]
-Chapter 14.
-
-Underfull \hbox (badness 10000) in paragraph at lines 322--349
-
- []
-
-[41]
-Underfull \hbox (badness 10000) in paragraph at lines 350--373
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 375--389
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 375--389
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 375--389
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 375--389
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 390--400
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 390--400
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 390--400
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 390--400
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 390--400
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 390--400
-
- []
-
-
-Underfull \vbox (badness 1490) has occurred while \output is active []
-
- [42]
-[43] [44
-
-]
-Chapter 15.
-
-Underfull \hbox (badness 10000) in paragraph at lines 403--421
-
- []
-
-[45] [46]
-Chapter 16.
-[47
-
-] [48
-
-]
-Chapter 17.
-
-Underfull \hbox (badness 10000) in paragraph at lines 424--441
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 442--477
-
- []
-
-[49]
-Underfull \vbox (badness 1400) has occurred while \output is active []
-
- [50]
-Underfull \hbox (badness 10000) in paragraph at lines 478--488
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 489--495
-
- []
-
-[51] [52]
-Chapter 18.
-
-Underfull \hbox (badness 10000) in paragraph at lines 498--532
-
- []
-
-[53
-
-]
-Underfull \hbox (badness 10000) in paragraph at lines 533--580
-
- []
-
-[54]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [55]
-Underfull \hbox (badness 10000) in paragraph at lines 581--588
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 590--591
-
- []
-
-[56]
-Chapter 19.
-
-Underfull \hbox (badness 10000) in paragraph at lines 592--598
-
- []
-
-[57
-
-] [58
-
-]
-Chapter 20.
-
-Underfull \hbox (badness 10000) in paragraph at lines 602--641
-
- []
-
-[59]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [60]
-[61] [62
-
-]
-Chapter 21.
-
-Underfull \hbox (badness 10000) in paragraph at lines 642--658
-
- []
-
-
-Overfull \hbox (9.627pt too wide) in paragraph at lines 663--664
-\EU1/lmr/m/n/10 What Common Lisp called \EU1/Monaco(0)/m/it/10 vector-push-exte
-nd \EU1/lmr/m/n/10 has been rechristened \EU1/Monaco(0)/m/it/10 vector-push\EU1
-/lmr/m/n/10 ; Common Lisp’s \EU1/Monaco(0)/m/it/10 vector-push
  []
 
-[63] [64
 
-]
-Chapter 22.
+Underfull \hbox (badness 10000) in paragraph at lines 43--45
 
-Underfull \hbox (badness 10000) in paragraph at lines 674--687
-
- []
-
-[65] [66
-
-]
-Chapter 23.
-
-Underfull \hbox (badness 10000) in paragraph at lines 690--693
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 694--710
-
- []
-
-[67]
-Underfull \hbox (badness 10000) in paragraph at lines 711--714
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 723--724
-
- []
-
-[68]
-Underfull \hbox (badness 10000) in paragraph at lines 749--755
-
- []
-
-[69] [70]
-Chapter 24.
-[71
-
-] [72
-
-]
-Chapter 25.
-
-Underfull \hbox (badness 10000) in paragraph at lines 759--765
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 766--774
-
- []
-
-[73] [74
-
-]
-Chapter 26.
-
-Underfull \hbox (badness 10000) in paragraph at lines 776--777
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 778--788
-
- []
-
-[75] [76
-
-]
-Chapter 27.
-
-Underfull \hbox (badness 10000) in paragraph at lines 790--801
-
- []
-
-[77] [78
-
-]
-Chapter 28.
-[79] [80
-
-]
-Chapter 29.
-[81] [82
-
-]
-Chapter 30.
-
-Underfull \hbox (badness 10000) in paragraph at lines 835--840
-
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [83]
-[84] [85] [86
-
-]
-Chapter 31.
-
-Underfull \hbox (badness 10000) in paragraph at lines 847--867
-
- []
-
-
-Overfull \hbox (15.86377pt too wide) in paragraph at lines 847--867
-\EU1/lmr/m/n/10 The contents of \EU1/lmr/m/it/10 readtables \EU1/lmr/m/n/10 are
- copied into \EU1/lmr/m/it/10 result\EU1/lmr/m/n/10 . If a conflict is discover
-ed, an error of type \EU1/Monaco(0)/m/it/10 reader-macro-conflict
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 847--867
-
- []
-
-[87] [88
-
-]
-Chapter 32.
-LaTeX Font Info:    Try loading font information for TS1+Monaco(0) on input lin
-e 875.
-LaTeX Font Info:    No file TS1Monaco(0).fd. on input line 875.
-
-LaTeX Font Warning: Font shape `TS1/Monaco(0)/m/n' undefined
-(Font)              using `TS1/cmr/m/n' instead
-(Font)              for symbol `textlangle' on input line 875.
-
-
-Underfull \hbox (badness 3343) in paragraph at lines 881--881
-\EU1/lmr/m/n/10 *BSD, Plan
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 882--882
-[]|\EU1/lmr/m/n/10 MS-DOS,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 882--882
-\EU1/lmr/m/n/10 Windows,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 882--882
-\EU1/lmr/m/n/10 ReactOS,
- []
-
-
-Underfull \vbox (badness 10000) detected at line 883
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 887--900
-
- []
-
-[89]
-Underfull \hbox (badness 10000) in paragraph at lines 911--913
-
- []
-
-[90]
-Chapter 33.
-[91
-
-] [92
-
-]
-Chapter 34.
-
-Underfull \hbox (badness 10000) in paragraph at lines 919--920
-
  []
-
-[93] [94
-
-]
-Chapter 35.
-
-Underfull \hbox (badness 10000) in paragraph at lines 922--932
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 937--939
-
- []
-
-[95]
-Underfull \hbox (badness 10000) in paragraph at lines 940--951
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 954--998
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 954--998
-
- []
-
-[96]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [97]
-[98]
-Chapter 36.
-[99
-
-] [100
-
-]
-Chapter 37.
-
-Underfull \hbox (badness 10000) in paragraph at lines 1003--1013
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1003--1013
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1003--1013
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1014--1019
-
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [101]
-[102]
-Chapter 38.
-[103
-
-] [104
-
-]
-Chapter 39.
-[105] [106
-
-]
-Chapter 40.
-
-Underfull \hbox (badness 10000) in paragraph at lines 1074--1280
-
- []
-
-[107]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [108]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [109]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [110]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [111]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [112]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [113]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [114]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [115]
-Underfull \hbox (badness 10000) in paragraph at lines 1281--1309
-
- []
-
-[116]
-Underfull \hbox (badness 10000) in paragraph at lines 1310--1357
-
- []
-
-[117]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [118]
-Underfull \hbox (badness 10000) in paragraph at lines 1358--1360
-
- []
-
-
-Overfull \hbox (29.5281pt too wide) in paragraph at lines 1361--1409
-\EU1/Monaco(0)/m/it/10 :for-context-type :single-box :allow-sensitive-inferiors
- :sensitive :query-identifier :prompt :record-type 
- []
-
-
-Overfull \hbox (40.72993pt too wide) in paragraph at lines 1361--1409
-\EU1/Monaco(0)/m/it/10 :prompt :prompt-mode :display-default :query-identifier 
-:activation-gestures :additional-activation-gestures
- []
-
-
-Overfull \hbox (73.23969pt too wide) in paragraph at lines 1361--1409
-\EU1/Monaco(0)/m/it/10 accept-from-string[] \EU1/lmr/m/it/10 type string \EU1/l
-mr/m/n/10 &key \EU1/Monaco(0)/m/it/10 :view :default :default-type :activation-
-gestures :additional-activation-gestures
- []
-
-
-Overfull \hbox (39.40935pt too wide) in paragraph at lines 1361--1409
-\EU1/Monaco(0)/m/it/10 defpresentation-type[] \EU1/lmr/m/it/10 name parameters 
-\EU1/lmr/m/n/10 &key \EU1/Monaco(0)/m/it/10 :options :inherit-from :description
- :history :parameters-are-types 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1361--1409
-
- []
-
-[119]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [120]
-Underfull \hbox (badness 10000) in paragraph at lines 1410--1411
-
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [121]
-[122]
-Chapter 41.
-[123
-
-] [124
-
-]
-Chapter 42.
-[125] [126
-
-]
-Chapter 43.
-(./koioslispspec.bbl [127] [128
-
-]) (./koioslispspec.ind [129] [130
-
-] [131]
-[132] [133] [134] [135] [136] [137
-
-]) (./koioslispspec.aux)
-
-LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
- ) 
+[7] (./manual.aux) ) 
 Here is how much of TeX's memory you used:
- 15579 strings out of 494004
- 332220 string characters out of 3150889
- 360793 words of memory out of 3000000
- 18626 multiletter control sequences out of 15000+200000
- 27138 words of font info for 64 fonts, out of 3000000 for 9000
+ 15499 strings out of 494004
+ 330459 string characters out of 3150889
+ 334686 words of memory out of 3000000
+ 18569 multiletter control sequences out of 15000+200000
+ 26406 words of font info for 58 fonts, out of 3000000 for 9000
  1144 hyphenation exceptions out of 8191
- 46i,6n,38p,2304b,227s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 46i,6n,38p,598b,190s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on koioslispspec.pdf (137 pages).
+Output written on manual.pdf (7 pages).
